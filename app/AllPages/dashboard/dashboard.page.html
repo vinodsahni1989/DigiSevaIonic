@@ -1,0 +1,388 @@
+<ion-header>
+
+
+  <ion-toolbar>
+
+    <ion-title>DIGITAL SEVA KENDRA</ion-title>
+
+
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false">
+      </ion-menu-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button fill="clear">
+        <ion-icon class="header-icon" name="cart-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+
+
+    <ion-buttons slot="end">
+      <ion-button fill="clear">
+        <ion-icon class="header-icon" name="wallet-outline"></ion-icon>
+        <ion-text style="font-size: 12px;">{{shareData.walletBalance}}</ion-text>
+      </ion-button>
+    </ion-buttons>
+
+
+    <ion-buttons slot="end" (click)="goToNotificationPage()">
+      <ion-button fill="clear" style="margin-right: 5px;">
+        <ion-icon class="header-icon" name="notifications-outline"></ion-icon>
+        <ion-badge *ngIf="shareData.notificationCount!=0" slot="end" class="badge">{{shareData.notificationCount}}
+        </ion-badge>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-grid>
+
+    <ion-card>
+      <ion-row class="image-div" *ngIf="memberDetails.Photo">
+        <!-- <img class="img-container" src="assets/Images/face_dummy.png" alt="Avatar"> -->
+        <img class="p-image" src="{{imageBaseUrl+memberDetails.Photo}}" alt="Avatar">
+      </ion-row>
+
+      <ion-row class="image-div" *ngIf="!memberDetails.Photo">
+        <!-- <img class="img-container" src="assets/Images/face_dummy.png" alt="Avatar"> -->
+        <img class="p-image" src="{{imageBaseUrl+memberDetails.Photo}}" alt="Avatar">
+      </ion-row>
+
+      <ion-row class="name-row">
+        <ion-label class="user-name-label">{{memberDetails.MemberName}}</ion-label>
+        <ion-label class="user-deg-label"
+          *ngIf="shareData.userRoleUId=='1' ||shareData.userRoleUId=='7' ||shareData.userRoleUId=='7' ;else templateName">
+          {{memberDetails.Role}}
+        </ion-label>
+        <ng-template #templateName>
+          <ion-label class="user-deg-label">{{memberDetails.Role}}
+          </ion-label>
+        </ng-template>
+      </ion-row>
+    </ion-card>
+
+    <ion-card>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            Join date
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{memberDetails.DOJ | date: "dd/MM/yyyy"}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            Id
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{memberDetails.UniqueId}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            Name
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{memberDetails.MemberName}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            DOB
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{memberDetails.Dob}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            Fathers name
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{memberDetails.FatherName}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            Phone
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{memberDetails.Phone}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            Email
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{memberDetails.Email}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            Phone 2
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{memberDetails.Phone}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            Aadhar Card
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{memberDetails.AdharNumber}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            Pan Card
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{memberDetails.PANNumber}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            Shop Name
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{memberDetails.CompanyShopName}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            Education
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{memberDetails.Qualification}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            Address
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{memberDetails.Address}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            State
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{memberDetails.state_name}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            District
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{memberDetails.District}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            Pan card Image
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <!-- <img src="assets/Images/pan-card-front.png" alt="Avatar"> -->
+          <img src="{{imageBaseUrl+memberDetails.ShopPhoto}}">
+        </ion-col>
+      </ion-item>
+
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            Aadhar Image
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col soze="6">
+          <!-- <img src="assets/Images/adhar-card.png" alt="Avatar"> -->
+          <img src="{{imageBaseUrl+memberDetails.AdharCardPhoto}}" alt="Avatar">
+        </ion-col>
+      </ion-item>
+
+    </ion-card>
+
+
+
+
+  </ion-grid>
+
+
+</ion-content>

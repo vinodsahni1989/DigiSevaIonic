@@ -1,0 +1,349 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{getFormName.form_name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-card [formGroup]="gstRegistrationForm" novalidate>
+
+      <ion-row class="upper-row">
+        <ion-label class="uper-text">
+          GST Suvidha Kendra
+        </ion-label>
+      </ion-row>
+
+      <ion-list style="margin-top: 5px;">
+        <ion-label class="label-head">Choice Anyone</ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" [interfaceOptions]="docHeader" placeholder="Choice Anyone"
+            formControlName="taxType">
+            <ion-select-option value="Tax Payer">Tax Payer</ion-select-option>
+            <ion-select-option value="Tax Collector (E-Commerce)">Tax Collector (E-Commerce)</ion-select-option>
+            <ion-select-option value="Tax Deductor">Tax Deductor</ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.taxType.errors?.required">
+          <ion-text>
+            * Tax type is required. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head">PAN Number</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="PAN Number" formControlName="panNumber"></ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.panNumber.errors?.required">
+          <ion-text>
+            * PAN Number is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Firm/Office/Shop Name</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="Firm/Office/Shop Name"
+            formControlName="firmOfficeShop"></ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.firmOfficeShop.errors?.required">
+          <ion-text>
+            * Firm/Office/Shop Name is required. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head">Full Name</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="Full Name" formControlName="fullName"></ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.fullName.errors?.required">
+          <ion-text>
+            * Full Name is required. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head">Date of Birth</ion-label>
+        <ion-row class="item-row">
+          <ion-datetime class="date-text" placeholder="Date of Birth" displayFormat="DD-MMM-YYYY"
+            pickerFormat="DD-MMM-YYYY" min="1960" max="2030" formControlName="dob"></ion-datetime>
+          <ion-icon class="date-icon" name="calendar-number-outline"></ion-icon>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.fullName.errors?.required">
+          <ion-text>
+            * Date of Birth is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Father's Name</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="Father's Name" formControlName="fatherName">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.fatherName.errors?.required">
+          <ion-text>
+            * Father's Name is required. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head">Mobile No.</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="tel" maxlength="10" placeholder="Mobile No." formControlName="mobileNo">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.mobileNo.errors?.required">
+          <ion-text>
+            * Valid Mobile No is required. <br />
+          </ion-text>
+        </p>
+        <p class="error" *ngIf="isSubmited && errorControl.mobileNo.errors?.pattern">
+          <ion-text>
+            * Only numerical values allowed. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head">Email ID</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="Email ID" formControlName="email"></ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.email.errors?.required">
+          <ion-text>
+            * Email is required. <br />
+          </ion-text>
+        </p>
+        <p class="error" *ngIf="isSubmited && errorControl.email.errors?.pattern">
+          <ion-text>
+            * Valid Email is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Aadhar No.</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="tel" maxlength="12" placeholder="Aadhar No." formControlName="adharNo"></ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.adharNo.errors?.required">
+          <ion-text>
+            * Aadhar No. is required. <br />
+          </ion-text>
+        </p>
+        <p class="error" *ngIf="isSubmited && errorControl.adharNo.errors?.pattern">
+          <ion-text>
+            * Only Numerical values allowed. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">State</ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" [interfaceOptions]="stateHeader" placeholder="State"
+            formControlName="stateId" (ionChange)="selectState($event)">
+            <ion-select-option *ngFor="let state of shareData.stateList" [value]="state">{{state.state_name}}
+            </ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.stateId.errors?.required">
+          <ion-text>
+            * State is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">District</ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" [disabled]="isStateId" [interfaceOptions]="districtHeader"
+            placeholder="District" [value]="districtId" [(ngModel)]="districtId" formControlName="districtId"
+            (ionChange)="selectDistrict($event)">
+            <ion-select-option *ngFor="let district of shareData.districtList" [value]="district">
+              {{district.city_name}}
+            </ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.districtId.errors?.required">
+          <ion-text>
+            * District is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Pin Code</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="tel" maxlength="6" placeholder="Pin Code" formControlName="pincode">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.pincode.errors?.required">
+          <ion-text>
+            * Valid Pin Code is required. <br />
+          </ion-text>
+        </p>
+        <p class="error" *ngIf="isSubmited && errorControl.pincode.errors?.pattern">
+          <ion-text>
+            * Only numerical values allowed. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Address</ion-label>
+        <ion-row class="item-row-address">
+          <ion-textarea class="text-area" rows="15" type="text" placeholder="Address" formControlName="address">
+          </ion-textarea>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.address.errors?.required">
+          <ion-text>
+            * Address is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Upload Photo</ion-label>
+        <ion-row class="item-row">
+          <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('profile')">Choose File
+          </ion-button>
+        </ion-row>
+
+        <ion-row class="itemheight1" *ngIf="profilePhoto!==null">
+          <div class="inner">
+            <img class="selected-img" src="{{profilePhoto}}" name="image5" alt="image">
+            <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('profile')">
+              <ion-icon name="close-outline">
+              </ion-icon>
+            </ion-button>
+          </div>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && profilePhoto==null">
+          <ion-text>
+            * Photo is required. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head">Upload Signature</ion-label>
+        <ion-row class="item-row">
+          <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('signature')">Choose File
+          </ion-button>
+        </ion-row>
+
+        <ion-row class="itemheight1" *ngIf="signaturePhoto!==null">
+          <div class="inner">
+            <img class="selected-img" src="{{signaturePhoto}}" name="image5" alt="image">
+            <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('signature')">
+              <ion-icon name="close-outline">
+              </ion-icon>
+            </ion-button>
+          </div>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && signaturePhoto==null">
+          <ion-text>
+            * Signature Photo is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Upload PAN Card</ion-label>
+        <ion-row class="item-row">
+          <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('pancard')">Choose File
+          </ion-button>
+        </ion-row>
+
+        <ion-row class="itemheight1" *ngIf="pancardPhoto!==null">
+          <div class="inner">
+            <img class="selected-img" src="{{pancardPhoto}}" name="image5" alt="image">
+            <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('pancard')">
+              <ion-icon name="close-outline">
+              </ion-icon>
+            </ion-button>
+          </div>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && pancardPhoto==null">
+          <ion-text>
+            * PAN Card Photo is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Upload Identity Proof</ion-label>
+        <ion-row class="item-row">
+          <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('identity')">Choose File
+          </ion-button>
+        </ion-row>
+
+        <ion-row class="itemheight1" *ngIf="identityPhoto!==null">
+          <div class="inner">
+            <img class="selected-img" src="{{identityPhoto}}" name="image5" alt="image">
+            <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('identity')">
+              <ion-icon name="close-outline">
+              </ion-icon>
+            </ion-button>
+          </div>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && identityPhoto==null">
+          <ion-text>
+            * Identity Proof Photo is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Upload Bank PassBook</ion-label>
+        <ion-row class="item-row">
+          <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('passbook')">Choose File
+          </ion-button>
+        </ion-row>
+
+        <ion-row class="itemheight1" *ngIf="passbookPhoto!==null">
+          <div class="inner">
+            <img class="selected-img" src="{{passbookPhoto}}" name="image5" alt="image">
+            <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('passbook')">
+              <ion-icon name="close-outline">
+              </ion-icon>
+            </ion-button>
+          </div>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && passbookPhoto==null">
+          <ion-text>
+            * Bank PassBook Photo is required. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head">Rent Agreement/Electricity Bill</ion-label>
+        <ion-row class="item-row">
+          <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('rentElectronic')">Choose
+            File
+          </ion-button>
+        </ion-row>
+
+        <ion-row class="itemheight1" *ngIf="rentElectronicPhoto!==null">
+          <div class="inner">
+            <img class="selected-img" src="{{rentElectronicPhoto}}" name="image5" alt="image">
+            <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('rentElectronic')">
+              <ion-icon name="close-outline">
+              </ion-icon>
+            </ion-button>
+          </div>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && rentElectronicPhoto==null">
+          <ion-text>
+            * Rent Agreement/Electricity Bill Photo is required. <br />
+          </ion-text>
+        </p>
+
+
+        <hr>
+        <hr>
+        <ion-row>
+          <ion-col>
+            <ion-button class="submit-button" shape="round" fill="outline" (click)="payAndSubmit()">Pay & Submit
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button class="reset-btn" expand="block" type="submit" (click)="resetMainForm()">Reset
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+
+      </ion-list>
+    </ion-card>
+  </ion-grid>
+
+
+
+</ion-content>

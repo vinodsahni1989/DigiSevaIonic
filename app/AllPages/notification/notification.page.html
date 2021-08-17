@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Notification</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false">
+      </ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid *ngIf="shareData.notificationCount!==null">
+    <ion-item line="full" class="itemheight" *ngFor="let noti of shareData.notificationList"
+      (click)="goToRelatedpage(noti)">
+      <ion-col size="2" class="icon-col">
+        <ion-icon style="font-size: 30px;" name="chatbox-ellipses-outline"></ion-icon>
+      </ion-col>
+      <ion-col size="7">
+        <ion-row class="msg-col">
+          <ion-text>
+            {{noti.title}}
+          </ion-text>
+        </ion-row>
+        <ion-row class="subMsg">
+          <ion-text>
+            {{noti.message}}
+          </ion-text>
+        </ion-row>
+      </ion-col>
+      <ion-col size="2" class="date-col">
+        <ion-text>
+          {{noti.created_date | date: "dd/MM/yyyy"}}
+        </ion-text>
+      </ion-col>
+      <ion-col size="1" *ngIf="noti.status=='1'">
+        <li class="unReadNoti"></li>
+      </ion-col>
+    </ion-item>
+  </ion-grid>
+
+  <div class="no-order-found-div" *ngIf="shareData.notificationList ==0">
+    <ion-text>
+      No Notification Found.
+    </ion-text>
+  </div>
+
+
+
+</ion-content>

@@ -1,0 +1,50 @@
+// /* Smartphones (portrait and landscape) ----------- */
+@media screen and (min-width: 320px) and (max-width: 480px) and (orientation: portrait) {
+      ion-card {
+            box-shadow: none;
+            border: 1px solid #eee;
+      }
+      .row-head {
+            background-color: #6d5196;
+            padding: 5px;
+      }
+
+      .heading-text {
+            font-family: "Open Sans", sans-serif;
+            font-size: 12px !important;
+            font-weight: 600;
+            color: #fff;
+      }
+      .value-text {
+            font-family: "Open Sans", sans-serif;
+            font-size: 12px !important;
+            float: right;
+            color: #fff;
+            font-weight: 600;
+      }
+
+      .itemheight {
+            --min-height: 30px !important;
+            --padding-start: 2px !important;
+            --padding-end: 0px !important;
+            --padding-top: 0px !important;
+      }
+      .head-text {
+            font-size: 12px;
+            font-weight: 600;
+      }
+      .val-text {
+            font-size: 12px;
+      }
+
+      .no-order-found-div {
+            text-align: center;
+            justify-content: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -moz-transform: translateX(-50%) translateY(-50%);
+            -webkit-transform: translateX(-50%) translateY(-50%);
+            transform: translateX(-50%) translateY(-50%);
+      }
+}

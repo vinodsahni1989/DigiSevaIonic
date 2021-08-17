@@ -1,0 +1,130 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Wallet Request</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-list style="margin-top: 5px;">
+
+      <ion-card [formGroup]="addWalletRequestForm" novalidate>
+
+        <ion-row class="upper-row">
+          <ion-label class="uper-text">
+            Add Wallet Request
+          </ion-label>
+        </ion-row>
+
+        <ion-label class="label-head">Wallet User</ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" placeholder="Select User" [interfaceOptions]="statusHeader"
+            formControlName="uniqueId">
+            <ion-select-option value="{{shareData.memberDetails.UniqueId}}">{{shareData.memberDetails.MemberName}}
+            </ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.uniqueId.errors?.required">
+          <ion-text>
+            * MemberName is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Amount Topup</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="Amount Topup" formControlName="amountTopup">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.amountTopup.errors?.required">
+          <ion-text>
+            * Amount Topup is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Txn Detail</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="Txn Detail" formControlName="txnDetail">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.txnDetail.errors?.required">
+          <ion-text>
+            * Txn Detail is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Other Detail</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="Other Detail" formControlName="otherDetail">
+          </ion-input>
+        </ion-row>
+
+
+        <hr>
+        <ion-row>
+          <ion-col class="button-col">
+            <ion-button class="download-button" shape="round" fill="outline" (click)="addWalletRequest()">Add Wallet
+              Request</ion-button>
+          </ion-col>
+        </ion-row>
+
+
+      </ion-card>
+
+
+      <!-- <ion-card [formGroup]="permissionsManagementForm" novalidate>
+
+        <ion-row class="upper-row">
+          <ion-label class="uper-text">
+            Add Permission
+          </ion-label>
+        </ion-row>
+
+        <ion-label class="label-head">Screen name</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="Screen name" formControlName="screenName">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited2 && errorControl2.screenName.errors?.required">
+          <ion-text>
+            * Screen Name is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Status</ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" placeholder="Select User" [interfaceOptions]="statusHeader2"
+            formControlName="status">
+            <ion-select-option value="1">Active</ion-select-option>
+            <ion-select-option value="0">InActive</ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited2 && errorControl2.status.errors?.required">
+          <ion-text>
+            * Status is required. <br />
+          </ion-text>
+        </p>
+
+        <hr>
+        <ion-row>
+          <ion-col class="button-col">
+            <ion-button class="download-button" shape="round" fill="outline" (click)="addNewPermission()">Add New
+              Permission</ion-button>
+          </ion-col>
+        </ion-row>
+
+
+      </ion-card> -->
+    </ion-list>
+
+
+  </ion-grid>
+
+
+
+
+
+</ion-content>

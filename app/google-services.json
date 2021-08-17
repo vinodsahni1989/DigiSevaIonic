@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "221570202814",
+    "project_id": "digiseva-ea00b",
+    "storage_bucket": "digiseva-ea00b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:221570202814:android:8c356419b5011ed2d9f2ef",
+        "android_client_info": {
+          "package_name": "com.teciza.digiseva"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "221570202814-ttjqprjdc120k3tbokfasj3prni0oqkp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzXpRN5gjIg1d-Pj1rbOEbkdnMq2gxTe0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "221570202814-ttjqprjdc120k3tbokfasj3prni0oqkp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

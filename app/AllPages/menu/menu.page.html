@@ -1,0 +1,78 @@
+<ion-split-pane contentId="content">
+
+  <ion-menu side="start" menuId="dashboard" contentId="content" class="main-menu">
+
+    <ion-content class="content-bg">
+
+      <ion-grid style="margin-top: -45px;">
+        <div class="image-div" *ngIf="shareData.userPhoto!==mull">
+          <img class="img-container" src="{{shareData.imageBaseUrl+shareData.userPhoto}}" alt="Avatar">
+        </div>
+
+        <div class="image-div" *ngIf="shareData.userPhoto==mull">
+          <img class="img-container" src="assets/Images/face_dummy.png" alt="Avatar">
+        </div>
+
+        <ion-row class="name-row">
+          <ion-label class="user-name-label">{{shareData.userName}}</ion-label>
+
+          <ion-label class="user-deg-label"
+            *ngIf="shareData.userRoleUId=='1' ||shareData.userRoleUId=='7' ||shareData.userRoleUId=='7' ;else templateName">
+            {{userRoleText}}
+          </ion-label>
+
+          <ng-template #templateName>
+            <ion-label class="user-deg-label">{{userRoleText}}
+            </ion-label>
+          </ng-template>
+        </ion-row>
+
+      </ion-grid>
+
+      <hr style="background-color: #000; margin: 0px 20px 10px 20px;">
+
+      <ion-list *ngFor="let p of pages" class="list-menu">
+
+        <ion-menu-toggle *ngIf="p.url" auto-hide="true">
+          <ion-item lines="none" (click)="GotoMenu(p)" routerDirection="root" routerLinkActive="active">
+            <ion-icon class="icon-image" [name]="p.icon" slot="start"></ion-icon>
+            <ion-label>{{p.title}}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-item lines="none" *ngIf="p?.children && p?.children?.length>0" (click)="p.open = !p.open"
+          [class.active-parent]="p.open" detail="false">
+          <ion-icon class="icon-image" [name]="p.icon" slot="start"></ion-icon>
+          <ion-label>{{p.title}}</ion-label>
+          <ion-icon class="icon-image" slot="end" name="chevron-forward-outline"
+            [ngClass]="{'rotated': p.open, 'parent-icon':true }">
+          </ion-icon>
+        </ion-item>
+
+        <ion-list *ngIf="p.open" class="sub-list">
+          <ion-menu-toggle auto-hide="true">
+            <ion-item lines="none" class="sub-item" *ngFor="let sub of p.children" (click)="GotoSubMenu(sub)"
+              routerDirection="root" routerLinkActive="active">
+              <ion-icon class="icon-image" [name]="sub.icon" slot="start"></ion-icon>
+              <ion-label>{{sub.title}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+
+
+      </ion-list>
+
+      <ion-list class="list-menu">
+        <ion-item (click)="logOut()" lines="none">
+          <ion-icon class="icon-image" name="log-out-outline"></ion-icon>
+          <ion-label>
+            &nbsp;Logout
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="content"></ion-router-outlet>
+</ion-split-pane>

@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{gotScreenName}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false">
+      </ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid *ngIf="screenDataArray!==null">
+
+    <ion-card *ngFor="let item of screenDataArray">
+      <ion-card-header class="row-head-social">
+        <ion-card-subtitle class="social-head">{{item.form_name}} </ion-card-subtitle>
+      </ion-card-header>
+
+      <span *ngIf="gotScreenName!== 'B2B Services'">
+        <ion-row class="text-row">
+          <ion-text>
+            {{item.form_description}}
+          </ion-text>
+        </ion-row>
+      </span>
+
+      <span *ngIf="gotScreenName=='B2B Services'">
+        <ion-row class="text-row-inerHtml">
+          <ion-text [innerHTML]="item.form_description"> </ion-text>
+        </ion-row>
+      </span>
+
+      <ion-row class="price-row">
+        <ion-text>
+         Form Fees Rs. {{item.form_price}}
+        </ion-text>
+      </ion-row>
+
+      <ion-row class="button-row">
+        <ion-button class="pay-button" shape="round" fill="outline" (click)="applyNow(item)">Apply Now</ion-button>
+      </ion-row>
+
+    </ion-card>
+
+  </ion-grid>
+
+
+
+  <ion-grid *ngIf="screenDataArray==null">
+    <div class="no-order-found-div">
+      <ion-text>
+        No Record Found. !!
+      </ion-text>
+    </div>
+  </ion-grid>
+
+
+
+</ion-content>

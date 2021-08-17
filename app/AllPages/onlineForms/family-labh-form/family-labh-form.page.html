@@ -1,0 +1,551 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{getFormName.form_name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-card [formGroup]="familyLabhForm" novalidate>
+      <ion-list style="margin-top: 5px;">
+
+        <ion-label class="label-head">राज्य चुनें</ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" [interfaceOptions]="distTypeHeader" placeholder="-- चुनें --"
+            formControlName="stateId" (ionChange)="selectState($event)">
+            <ion-select-option *ngFor="let state of shareData.stateList" [value]="state">{{state.state_name}}
+            </ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.stateId.errors?.required">
+          <ion-text>
+            * State is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">जनपद</ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" [disabled]="isStateId" [interfaceOptions]="areaTypeHeader" placeholder="जनपद"
+            formControlName="janpad" [(ngModel)]="janpad" (ionChange)="selectDistrict($event)">
+            <ion-select-option *ngFor="let district of shareData.districtList" [value]="district">
+              {{district.city_name}}
+            </ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.janpad.errors?.required">
+          <ion-text>
+            * Janpad is required. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head">निवासी</ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" [interfaceOptions]="nivasTypeHeader" placeholder="निवासी चुने ..."
+            formControlName="nivas">
+            <ion-select-option value="ग्रामीण">ग्रामीण</ion-select-option>
+            <ion-select-option value="नगरीय">नगरीय</ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.nivas.errors?.required">
+          <ion-text>
+            * Nivas is required. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head">तहसील</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="तहसील" formControlName="tahsil"></ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.tahsil.errors?.required">
+          <ion-text>
+            * Tahsil is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">आवेदक का नाम</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="आवेदक का नाम" formControlName="fullName"></ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.fullName.errors?.required">
+          <ion-text>
+            * Full Name is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">पिता / पति का नाम</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="पिता / पति का नाम" formControlName="fatherName">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.fatherName.errors?.required">
+          <ion-text>
+            * Father / Husband Name is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">श्रेणी</ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" [interfaceOptions]="shreniHeader" placeholder="श्रेणी"
+            formControlName="category">
+            <ion-select-option value="GENERAL">GENERAL</ion-select-option>
+            <ion-select-option value="MINORITY">MINORITY </ion-select-option>
+            <ion-select-option value="OBC">OBC</ion-select-option>
+            <ion-select-option value="SC ">SC </ion-select-option>
+            <ion-select-option value="ST">ST</ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.category.errors?.required">
+          <ion-text>
+            * Category is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head"> पहचान प्रमाण पत्र </ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" [interfaceOptions]="identityHeader" placeholder="पहचान प्रमाण पत्र "
+            formControlName="identity">
+            <ion-select-option value="Voter ID Card ">Voter ID Card </ion-select-option>
+            <ion-select-option value="Ration Card ">Ration Card </ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.identity.errors?.required">
+          <ion-text>
+            * Identity is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">पहचान प्रमाण पत्र नं0</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="पहचान प्रमाण पत्र नं0"
+            formControlName="identityCertificateNo">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.identityCertificateNo.errors?.required">
+          <ion-text>
+            * Identity Certificate No is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">परिवार की कुल वार्षिक आय</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="परिवार की कुल वार्षिक आय"
+            formControlName="familyYearIncome">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.familyYearIncome.errors?.required">
+          <ion-text>
+            * Family Year Income is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">आय प्रमाण पत्र संख्या</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="आय प्रमाण पत्र संख्या"
+            formControlName="incomeCertificateNo">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.incomeCertificateNo.errors?.required">
+          <ion-text>
+            * Income Certificate No is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">आय प्रमाण-पत्र आवेदन संख्या</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="आय प्रमाण-पत्र आवेदन संख्या"
+            formControlName="incomeAppNo">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.incomeAppNo.errors?.required">
+          <ion-text>
+            * Income Certificate Application No is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">बैंक का नाम</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="बैंक का नाम" formControlName="bankName"></ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.bankName.errors?.required">
+          <ion-text>
+            * Bank Name is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">बैंक शाखा</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="बैंक शाखा" formControlName="bankBranch"></ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.bankBranch.errors?.required">
+          <ion-text>
+            * Bank Branch is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">आई० एफ० एस० सी० कोड</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="आई० एफ० एस० सी० कोड" formControlName="ifscCode">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.ifscCode.errors?.required">
+          <ion-text>
+            * I F S C is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">बैंक खाता नंबर</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="बैंक खाता नंबर" formControlName="bankAccountNo">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.bankAccountNo.errors?.required">
+          <ion-text>
+            * Bank Account No is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">मोबाइल न०</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="tel" placeholder="मोबाइल न०" maxlength="10" formControlName="mobileNo">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.mobileNo.errors?.required">
+          <ion-text>
+            * Valid Mobile No is required. <br />
+          </ion-text>
+        </p>
+        <p class="error" *ngIf="isSubmited && errorControl.mobileNo.errors?.pattern">
+          <ion-text>
+            * Only numerical values allowed. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">मृतक का नाम</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="मृतक का नाम" formControlName="deceasedName">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.deceasedName.errors?.required">
+          <ion-text>
+            * Deceased Name is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">मृतक के पिता/पति का नाम</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="मृतक के पिता/पति का नाम"
+            formControlName="deceasedFatherName">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.deceasedFatherName.errors?.required">
+          <ion-text>
+            * Deceased Father / Husband Name is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">मृत्यु प्रमाण पत्र संख्या</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="मृत्यु प्रमाण पत्र संख्या"
+            formControlName="deathCertificateNo">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.deathCertificateNo.errors?.required">
+          <ion-text>
+            * Death Certificate No is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">मृत्यु प्रमाण पत्र जारी तिथि</ion-label>
+        <ion-row class="item-row">
+          <!-- <ion-input class="input-field" type="text" placeholder="मृत्यु प्रमाण पत्र जारी तिथि"
+            formControlName="deathCertificateIssueDate">
+          </ion-input> -->
+          <ion-datetime class="date-text" placeholder="मृत्यु प्रमाण पत्र जारी तिथि" displayFormat="DD-MMM-YYYY"
+            pickerFormat="DD-MMM-YYYY" min="1960" max="2030" formControlName="deathCertificateIssueDate"></ion-datetime>
+          <ion-icon class="date-icon" name="calendar-number-outline"></ion-icon>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.deathCertificateIssueDate.errors?.required">
+          <ion-text>
+            * Death certificate issue Date is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">मृत्यु की तिथि</ion-label>
+        <ion-row class="item-row">
+          <!-- <ion-input class="input-field" type="text" placeholder="मृत्यु की तिथि" formControlName="deathDate">
+          </ion-input> -->
+          <ion-datetime class="date-text" placeholder="मृत्यु प्रमाण पत्र जारी तिथि" displayFormat="DD-MMM-YYYY"
+            pickerFormat="DD-MMM-YYYY" min="1960" max="2030" formControlName="deathDate"></ion-datetime>
+          <ion-icon class="date-icon" name="calendar-number-outline"></ion-icon>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.deathDate.errors?.required">
+          <ion-text>
+            * Death Date is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">मृत्यु का कारण </ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" [interfaceOptions]="selectHeader" placeholder="-- चयन करें --"
+            formControlName="deathCause">
+            <ion-select-option value="दुर्घटना">दुर्घटना </ion-select-option>
+            <ion-select-option value="बिजली गिरना">बिजली गिरना </ion-select-option>
+            <ion-select-option value="बाढ़/जल में डूबना ">बाढ़/जल में डूबना </ion-select-option>
+            <ion-select-option value="विषैले जीव द्वारा काटना">विषैले जीव द्वारा काटना</ion-select-option>
+            <ion-select-option value="आगजनी">आगजनी</ion-select-option>
+            <ion-select-option value="हत्या">हत्या</ion-select-option>
+            <ion-select-option value="गंभीर बीमारी">गंभीर बीमारी </ion-select-option>
+            <ion-select-option value="अन्य कारण">अन्य कारण</ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.deathCause.errors?.required">
+          <ion-text>
+            * Death Cause is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">मृत्यु की तिथि को मृतक की उम्र</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="मृत्यु की तिथि को मृतक की उम्र"
+            formControlName="deceasedAge">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.deceasedAge.errors?.required">
+          <ion-text>
+            * Deceased Age is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">मृतक का व्यवसाय </ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" [interfaceOptions]="selectHeader" placeholder="-- चयन करें --"
+            formControlName="deceasedBusiness">
+            <ion-select-option value="किसान">किसान </ion-select-option>
+            <ion-select-option value="मज़दूर">मज़दूर</ion-select-option>
+            <ion-select-option value="कर्मकार  (मिस्त्री, बढ़ई, इत्यादि) ">कर्मकार (मिस्त्री, बढ़ई, इत्यादि)
+            </ion-select-option>
+            <ion-select-option value="स्व वयवसाय">स्व वयवसाय</ion-select-option>
+            <ion-select-option value="अन्य">अन्य</ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.deceasedBusiness.errors?.required">
+          <ion-text>
+            * Deceased Bussiness is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head"> आवेदक का मृतक से सम्बन्ध</ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" [interfaceOptions]="selectHeader" placeholder="-- चयन करें --"
+            formControlName="deceasedRelation">
+            <ion-select-option value="पिता">पिता </ion-select-option>
+            <ion-select-option value="माता">माता</ion-select-option>
+            <ion-select-option value="भाई">भाई </ion-select-option>
+            <ion-select-option value="बहन">बहन</ion-select-option>
+            <ion-select-option value="पति">पति</ion-select-option>
+            <ion-select-option value="पत्नी">पत्नी</ion-select-option>
+            <ion-select-option value="पुत्र">पुत्र</ion-select-option>
+            <ion-select-option value="पुत्री">पुत्री</ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.deceasedRelation.errors?.required">
+          <ion-text>
+            * Deceased Relation is required. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head"> मृतक की उम्र से सम्बंधित प्रमाण </ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" [interfaceOptions]="selectHeader" placeholder="-- चयन करें --"
+            formControlName="deceasedRelCertificate">
+            <ion-select-option value="वोटर आई0डी0">वोटर आई0डी0 </ion-select-option>
+            <ion-select-option value="परिवार कुटुंब रजिस्टर की नक़ल">परिवार कुटुंब रजिस्टर की नक़ल</ion-select-option>
+            <ion-select-option value="शैक्षिक आर्हता से सम्बंधित प्रमाण पत्र">शैक्षिक आर्हता से सम्बंधित प्रमाण पत्र
+            </ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.deceasedRelCertificate.errors?.required">
+          <ion-text>
+            * Deceased Relation Certificate is required. <br />
+          </ion-text>
+        </p>
+
+
+
+        <ion-label class="label-head">Upload Photo</ion-label>
+        <ion-row class="item-row">
+          <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('profile')">Choose File
+          </ion-button>
+        </ion-row>
+
+        <ion-row class="itemheight1" *ngIf="profilePhoto!==null">
+          <div class="inner">
+            <img class="selected-img" src="{{profilePhoto}}" name="image5" alt="image">
+            <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('profile')">
+              <ion-icon name="close-outline">
+              </ion-icon>
+            </ion-button>
+          </div>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && profilePhoto==null">
+          <ion-text>
+            * Photo is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">अपलोड पहचान प्रमाण पत्र</ion-label>
+        <ion-row class="item-row">
+          <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('identity')">Choose File
+          </ion-button>
+        </ion-row>
+
+        <ion-row class="itemheight1" *ngIf="identityPhoto!==null">
+          <div class="inner">
+            <img class="selected-img" src="{{identityPhoto}}" name="image5" alt="image">
+            <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('identity')">
+              <ion-icon name="close-outline">
+              </ion-icon>
+            </ion-button>
+          </div>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && identityPhoto==null">
+          <ion-text>
+            * Identity Photo is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">अपलोड बैंक पासबुक</ion-label>
+        <ion-row class="item-row">
+          <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('passbook')">Choose File
+          </ion-button>
+        </ion-row>
+
+        <ion-row class="itemheight1" *ngIf="passbookPhoto!==null">
+          <div class="inner">
+            <img class="selected-img" src="{{passbookPhoto}}" name="image5" alt="image">
+            <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('passbook')">
+              <ion-icon name="close-outline">
+              </ion-icon>
+            </ion-button>
+          </div>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && passbookPhoto==null">
+          <ion-text>
+            * Bank Passbook Photo is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">मृत्यु प्रमाण पत्र को अपलोड करे</ion-label>
+        <ion-row class="item-row">
+          <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('deathCertificate')">
+            Choose File
+          </ion-button>
+        </ion-row>
+
+        <ion-row class="itemheight1" *ngIf="deathCertificatePhoto!==null">
+          <div class="inner">
+            <img class="selected-img" src="{{deathCertificatePhoto}}" name="image5" alt="image">
+            <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('deathCertificate')">
+              <ion-icon name="close-outline">
+              </ion-icon>
+            </ion-button>
+          </div>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && deathCertificatePhoto==null">
+          <ion-text>
+            * Death Certificate is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">आय प्रमाण पत्र अपलोड करें</ion-label>
+        <ion-row class="item-row">
+          <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('income')">Choose File
+          </ion-button>
+        </ion-row>
+
+        <ion-row class="itemheight1" *ngIf="incomePhoto!==null">
+          <div class="inner">
+            <img class="selected-img" src="{{incomePhoto}}" name="image5" alt="image">
+            <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('income')">
+              <ion-icon name="close-outline">
+              </ion-icon>
+            </ion-button>
+          </div>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && incomePhoto==null">
+          <ion-text>
+            * Income Certificate is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">हस्ताक्षर अपलोड करे</ion-label>
+        <ion-row class="item-row">
+          <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('signature')">Choose File
+          </ion-button>
+        </ion-row>
+
+        <ion-row class="itemheight1" *ngIf="signaturePhoto!==null">
+          <div class="inner">
+            <img class="selected-img" src="{{signaturePhoto}}" name="image5" alt="image">
+            <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('signature')">
+              <ion-icon name="close-outline">
+              </ion-icon>
+            </ion-button>
+          </div>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && signaturePhoto==null">
+          <ion-text>
+            * Signature Photo is required. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head"> मृतक सम्बंधित प्रमाण को अपलोड करे</ion-label>
+        <ion-row class="item-row">
+          <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('deceasedRelated')">Choose
+            File
+          </ion-button>
+        </ion-row>
+
+        <ion-row class="itemheight1" *ngIf="deceasedRelPhoto!==null">
+          <div class="inner">
+            <img class="selected-img" src="{{deceasedRelPhoto}}" name="image5" alt="image">
+            <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('deceasedRelated')">
+              <ion-icon name="close-outline">
+              </ion-icon>
+            </ion-button>
+          </div>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && deceasedRelPhoto==null">
+          <ion-text>
+            * Deceased Related Certificate is required. <br />
+          </ion-text>
+        </p>
+
+
+        <hr>
+        <hr>
+        <ion-row>
+          <ion-col>
+            <ion-button class="submit-button" shape="round" fill="outline" (click)="payAndSubmit()">Pay & Submit
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button class="reset-btn" expand="block" type="submit" (click)="resetMainForm()">Reset
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+      </ion-list>
+    </ion-card>
+  </ion-grid>
+
+
+
+</ion-content>

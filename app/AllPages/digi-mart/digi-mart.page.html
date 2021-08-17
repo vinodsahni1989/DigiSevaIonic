@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>DIGIMART</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false">
+      </ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid *ngIf="productArray!==null">
+
+    <ion-card *ngFor="let item of productArray">
+      <ion-card-header class="row-head-social">
+        <ion-card-subtitle class="social-head">{{item.brand}} - {{item.name}}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-row class="image-row">
+        <img class="selected-img" src="{{imageUrl+item.image}}" alt="ProductImage">
+      </ion-row>
+
+      <ion-row class="text-row">
+        <ion-text style="line-height: 1.8;">
+          <ion-text [innerHTML]="item.description"> </ion-text>
+        </ion-text>
+      </ion-row>
+
+
+      <ion-row class="price-row">
+        <ion-text>
+          MRP - <strong> Rs. {{item.mrp}}</strong>
+        </ion-text>
+      </ion-row>
+      <ion-row class="price-row">
+        <ion-text>
+          Digimart - <strong> Rs. {{item.price }}</strong>
+        </ion-text>
+      </ion-row>
+      <ion-row class="price-row">
+        <ion-text>
+          Minimum Order Qty - <strong> {{item.qty}}</strong>
+        </ion-text>
+      </ion-row>
+
+      <ion-row class="button-row">
+        <ion-button class="cart-button" shape="round" fill="outline" (click)="addToCart(item)">Add To Cart</ion-button>
+      </ion-row>
+
+    </ion-card>
+
+  </ion-grid>
+
+
+
+  <ion-grid *ngIf="productArray==null">
+    <div class="no-order-found-div">
+      <ion-text>
+        No Record Found. !!
+      </ion-text>
+    </div>
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,49 @@
+<!-- <ion-header style="--ion-color-primary:#707070;">
+  <ion-toolbar>
+    <ion-title>
+      <ion-img src="assets/images/LoginObsessions_logo.png" alt="logo"></ion-img>
+    </ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+
+
+
+  <ion-grid class="card-in-center">
+    <form [formGroup]="loginForm" class="login-form">
+
+      <ion-row class="logo-row">
+        <ion-img class="image-logo" src="assets/Images/logo.png" alt="logo"></ion-img>
+      </ion-row>
+
+      <ion-row class="login-text">
+        <h2>Welcome Admin</h2>
+      </ion-row>
+
+      <div class="login-div">
+
+        <ion-label>Unique Id</ion-label>
+        <ion-item class="item-class">
+          <ion-input class="input-field" placeholder="TTPL000000" type="text" formControlName="uniqueId"></ion-input>
+        </ion-item>
+
+        <ion-label>Password</ion-label>
+        <ion-item class="item-class">
+          <ion-input class="input-field" placeholder="Password" type="password" formControlName="password"></ion-input>
+        </ion-item>
+
+        <hr>
+        <ion-button expand="block" class="login-btn" [disabled]="!loginForm.valid" (click)="login()">Sign in
+        </ion-button>
+        <hr>
+        <hr>
+        <hr>
+      </div>
+
+
+
+    </form>
+  </ion-grid>
+
+</ion-content>

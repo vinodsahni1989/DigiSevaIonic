@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{gotScreenTitle}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false">
+      </ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <div [ngSwitch]="gotScreenName">
+
+    <div *ngSwitchCase="'imp-download'">
+      <ion-grid>
+        <ion-card *ngFor="let item of screenDataArray">
+          <ion-card-header class="row-head-social">
+            <ion-card-subtitle class="social-head">{{item.name}} </ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-row class="text-row">
+            <ion-text>
+              {{item.name}}
+            </ion-text>
+          </ion-row>
+
+          <ion-row class="button-row">
+            <ion-button class="download-button" shape="round" fill="outline" (click)="openLink(item.url)">
+              Open Link</ion-button>
+          </ion-row>
+        </ion-card>
+      </ion-grid>
+
+      <div class="no-order-found-div" *ngIf="screenDataArray==null">
+        <ion-text>
+          No Record Found !!
+        </ion-text>
+      </div>
+
+    </div>
+
+    <div *ngSwitchCase="'form-download'">
+
+      <ion-grid *ngIf="screenDataArray!==null">
+        <ion-card *ngFor="let item of screenDataArray">
+
+          <ion-card-header class="row-head-social">
+            <ion-card-subtitle class="social-head">{{item.title}} </ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-row class="text-row">
+            <ion-text>
+              {{item.content}}
+            </ion-text>
+          </ion-row>
+
+          <ion-row class="button-row">
+            <ion-button class="download-button" shape="round" fill="outline"
+              (click)="downloadForm(item.download_link,item.title)">Download
+            </ion-button>
+          </ion-row>
+
+        </ion-card>
+      </ion-grid>
+
+      <div class="no-order-found-div" *ngIf="screenDataArray==null">
+        <ion-text>
+          No Record Found !!
+        </ion-text>
+      </div>
+
+    </div>
+
+  </div>
+</ion-content>

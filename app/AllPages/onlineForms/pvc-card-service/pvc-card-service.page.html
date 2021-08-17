@@ -1,0 +1,193 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{getFormName.form_name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-card [formGroup]="pvcCardForm" novalidate>
+
+      <ion-list style="margin-top: 5px;">
+
+        <ion-label class="label-head">Applicant's Name</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="Applicant's Name" formControlName="applicantName">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.applicantName.errors?.required">
+          <ion-text>
+            * Applicant's Name is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Mobile No.</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="tel" maxlength="10" placeholder="Mobile No." formControlName="mobileNo">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.mobileNo.errors?.required">
+          <ion-text>
+            * Valid Mobile No is required. <br />
+          </ion-text>
+        </p>
+        <p class="error" *ngIf="isSubmited && errorControl.mobileNo.errors?.pattern">
+          <ion-text>
+            * Only numerical values allowed. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Email ID</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="Email ID" formControlName="email"></ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.email.errors?.required">
+          <ion-text>
+            * Email is required. <br />
+          </ion-text>
+        </p>
+        <p class="error" *ngIf="isSubmited && errorControl.email.errors?.pattern">
+          <ion-text>
+            * Valid Email is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">What do you want to Print</ion-label>
+        <ion-radio-group formControlName="whatPrint">
+
+          <ion-row>
+            <ion-col class="radio-col">
+              <ion-label class="radio-label">Aadhar Card</ion-label>
+              <ion-radio mode="md" item-left value="Aadhar Card"></ion-radio>
+            </ion-col>
+            <ion-col class="radio-col">
+              <ion-label class="radio-label">PAN Card</ion-label>
+              <ion-radio mode="md" item-left value="PAN Card"></ion-radio>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="radio-col">
+              <ion-label class="radio-label">School/College ID Card</ion-label>
+              <ion-radio mode="md" item-left value="School/College ID Card"></ion-radio>
+            </ion-col>
+            <ion-col class="radio-col">
+              <ion-label class="radio-label">Office ID Card</ion-label>
+              <ion-radio mode="md" item-left value="Office ID Card"></ion-radio>
+            </ion-col>
+          </ion-row>
+
+        </ion-radio-group>
+        <p class="error" *ngIf="isSubmited && errorControl.whatPrint.errors?.required">
+          <ion-text>
+            * Please Select Any One. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Delivery Address</ion-label>
+        <ion-row class="item-row-address">
+          <ion-textarea class="text-area" rows="5" type="text" placeholder="Delivery Address"
+            formControlName="deliveryAddress">
+          </ion-textarea>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.deliveryAddress.errors?.required">
+          <ion-text>
+            * Delivery Address is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Shop/Office Name</ion-label>
+        <ion-row class="item-row-address">
+          <ion-textarea class="text-area" rows="5" type="text" placeholder="Shop/Office Name"
+            formControlName="shopName">
+          </ion-textarea>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.shopName.errors?.required">
+          <ion-text>
+            * Shop/Office Name is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Pin Code</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="tel" maxlength="6" placeholder="Pin Code" formControlName="pinCode">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.pinCode.errors?.required">
+          <ion-text>
+            * Valid Pin Code is required. <br />
+          </ion-text>
+        </p>
+        <p class="error" *ngIf="isSubmited && errorControl.pinCode.errors?.pattern">
+          <ion-text>
+            * Only numerical values allowed. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Design Password (if any)</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="Design Password" formControlName="pdfPass">
+          </ion-input>
+        </ion-row>
+
+        <ion-label class="label-head">Select Delivery Type</ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" [interfaceOptions]="applicationHeader" placeholder="Application For"
+            formControlName="deliveryType">
+            <ion-select-option value="Registry">Registry - Rs.23 (Delivered in 3-4 Days)</ion-select-option>
+            <ion-select-option value="Speed Post">Speed Post - Rs.42 (Delivered in 1-4 Days)</ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.deliveryType.errors?.required">
+          <ion-text>
+            * Delivery Type is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Upload Design Documents</ion-label>
+        <ion-row class="item-row">
+          <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('designDoc')">Choose File
+          </ion-button>
+        </ion-row>
+
+        <ion-row class="itemheight1" *ngIf="designDocument!==null">
+          <div class="inner">
+            <img class="selected-img" src="{{designDocument}}" name="image5" alt="image">
+            <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('designDoc')">
+              <ion-icon name="close-outline">
+              </ion-icon>
+            </ion-button>
+          </div>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && designDocument==null">
+          <ion-text>
+            * Design Documents is required. <br />
+          </ion-text>
+        </p>
+
+
+
+        <hr>
+        <hr>
+        <ion-row>
+          <ion-col>
+            <ion-button class="submit-button" shape="round" fill="outline" (click)="payAndSubmit()">Pay & Submit
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button class="reset-btn" expand="block" type="submit" (click)="resetMainForm()">Reset
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+      </ion-list>
+    </ion-card>
+
+  </ion-grid>
+
+
+</ion-content>

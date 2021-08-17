@@ -1,0 +1,978 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{getFormName.form_name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-card [formGroup]="upLaborForm" novalidate>
+      <ion-list style="margin-top: 5px;">
+
+
+        <ion-label class="label-head">श्रमिक का नाम (हिंदी English)</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="श्रमिक का नाम" formControlName="laborName">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.laborName.errors?.required">
+          <ion-text>
+            * Labor Name is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">पिता / पति का नाम (हिंदी English)</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="पिता / पति का नाम"
+            formControlName="fatherHusbandName"></ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.fatherHusbandName.errors?.required">
+          <ion-text>
+            * Father / Husband Name is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">माता का नाम (हिंदी English)</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="माता का नाम" formControlName="motherName">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.motherName.errors?.required">
+          <ion-text>
+            * Mother Name is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">जन्मतिथि</ion-label>
+        <ion-row class="item-row">
+          <ion-datetime class="date-text" placeholder="जन्मतिथि" displayFormat="DD-MMM-YYYY" pickerFormat="DD-MMM-YYYY"
+            min="1960" max="2030" formControlName="dob"></ion-datetime>
+          <ion-icon class="date-icon" name="calendar-number-outline"></ion-icon>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.dob.errors?.required">
+          <ion-text>
+            * Date of Birth is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">लिंग/Gender</ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" [interfaceOptions]="genderTypeHeader" placeholder="-- चुनें --"
+            formControlName="gender">
+            <ion-select-option value="पुरुष">पुरुष</ion-select-option>
+            <ion-select-option value="महिला">महिला</ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.gender.errors?.required">
+          <ion-text>
+            * Gender is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">कार्य का प्रकार</ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" [interfaceOptions]="genderTypeHeader" placeholder="-- चुनें --"
+            formControlName="workType">
+            <ion-select-option value="बेल्डिंग का कार्य"> बेल्डिंग का कार्य</ion-select-option>
+            <ion-select-option value="बढ़ई का कार्य"> बढ़ई का कार्य</ion-select-option>
+            <ion-select-option value="कुआँ खोदना"> कुआँ खोदना</ion-select-option>
+            <ion-select-option value="रोलर चलाना"> रोलर चलाना</ion-select-option>
+            <ion-select-option value="छप्पर डालने का कार्य"> छप्पर डालने का कार्य</ion-select-option>
+            <ion-select-option value="राजमिस्त्री का कार्य"> राजमिस्त्री का कार्य</ion-select-option>
+            <ion-select-option value="प्लम्बरिंग"> प्लम्बरिंग</ion-select-option>
+            <ion-select-option value="लोहार"> लोहार</ion-select-option>
+            <ion-select-option value="मोजैक पॉलिश"> मोजैक पॉलिश</ion-select-option>
+            <ion-select-option value="सड़क निर्माण"> सड़क निर्माण</ion-select-option>
+            <ion-select-option value="मिक्सर चलाने का कार्य"> मिक्सर चलाने का कार्य</ion-select-option>
+            <ion-select-option value="पुताई"> पुताई</ion-select-option>
+            <ion-select-option value="इलैक्ट्रिक वर्क"> इलैक्ट्रिक वर्क</ion-select-option>
+            <ion-select-option value="हथौड़ा चलाने का कार्य"> हथौड़ा चलाने का कार्य</ion-select-option>
+            <ion-select-option value="सुरंग निर्माण"> सुरंग निर्माण</ion-select-option>
+            <ion-select-option value="टाईल्स लगाने का कार्यरोलर चलाना"> टाईल्स लगाने का कार्यरोलर चलाना
+            </ion-select-option>
+            <ion-select-option value="कुएं से गाद(तलछट) हटाने का कार्य/डिविंग"> कुएं से गाद(तलछट) हटाने का कार्य/डिविंग
+            </ion-select-option>
+            <ion-select-option value="चट्टान तोड़ने का कार्य या खनिकर्म"> चट्टान तोड़ने का कार्य या खनिकर्म
+            </ion-select-option>
+            <ion-select-option value="स्प्रे वर्क या मिक्सिंग वर्क (सड़क निर्माण से सम्बद्ध)"> स्प्रे वर्क या मिक्सिंग
+              वर्क (सड़क निर्माण से सम्बद्ध)</ion-select-option>
+            <ion-select-option value="मार्बल एवं स्टोन्स वर्क"> मार्बल एवं स्टोन्स वर्क</ion-select-option>
+            <ion-select-option value="चौकीदारी (निर्माण स्थल पर सुरक्षा प्रदान करने के लिए)"> चौकीदारी (निर्माण स्थल पर
+              सुरक्षा प्रदान करने के लिए)</ion-select-option>
+            <ion-select-option value="चूना बनाना"> चूना बनाना</ion-select-option>
+            <ion-select-option value="मिट्टी का काम"> मिट्टी का काम</ion-select-option>
+            <ion-select-option value="सीमेंट, कंक्रीट, ईट आदि ढोने का कार्य"> सीमेंट, कंक्रीट, ईट आदि ढोने का कार्य
+            </ion-select-option>
+            <ion-select-option value="लिफ्ट एवं स्वचलित सीढ़ी की स्थापना का कार्य"> लिफ्ट एवं स्वचलित सीढ़ी की स्थापना का
+              कार्य</ion-select-option>
+            <ion-select-option value="सुरक्षा द्वार एवं अन्य उपकरणों की स्थापना का कार्य"> सुरक्षा द्वार एवं अन्य
+              उपकरणों की स्थापना का कार्य</ion-select-option>
+            <ion-select-option value="मिट्टी, बालू, व मौरंग के खनन का कार्य"> मिट्टी, बालू, व मौरंग के खनन का कार्य
+            </ion-select-option>
+            <ion-select-option value="ईट-भट्ठों पर ईट निर्माण का कार्य"> ईट-भट्ठों पर ईट निर्माण का कार्य
+            </ion-select-option>
+            <ion-select-option value="सामुदायिक पार्क या फुटपाथ का निर्माण"> सामुदायिक पार्क या फुटपाथ का निर्माण
+            </ion-select-option>
+            <ion-select-option value="रसोई में उपयोग हेतु माडूलर इकाइयों की स्थापना"> रसोई में उपयोग हेतु माडूलर इकाइयों
+              की स्थापना</ion-select-option>
+            <ion-select-option value="मकानों/भवनों की आन्तरिक सज्जा का कार्य"> मकानों/भवनों की आन्तरिक सज्जा का कार्य
+            </ion-select-option>
+            <ion-select-option value="मकानों/भवनों की आन्तरिक सज्जा का कार्य"> मकानों/भवनों की आन्तरिक सज्जा का कार्य
+            </ion-select-option>
+            <ion-select-option value="बड़े यांत्रिक कार्य, जैसे- मशीनरी, पुल निर्माण कार्य आदि"> बड़े यांत्रिक कार्य,
+              जैसे- मशीनरी, पुल निर्माण कार्य आदि</ion-select-option>
+            <ion-select-option value="अग्निशमन प्रणाली की स्थापना एवं मरम्मत का कार्य"> अग्निशमन प्रणाली की स्थापना एवं
+              मरम्मत का कार्य</ion-select-option>
+            <ion-select-option value="ठंडे एवं गरम मशीनरी की स्थापना और मरम्मत का कार्य"> ठंडे एवं गरम मशीनरी की स्थापना
+              और मरम्मत का कार्य</ion-select-option>
+            <ion-select-option value="बाढ़ प्रबंधन व इसी प्रकार के अन्य कार्य से संबंधित सभी कार्य"> बाढ़ प्रबंधन व इसी
+              प्रकार के अन्य कार्य से संबंधित सभी कार्य
+            </ion-select-option>
+            <ion-select-option value="बाँध, पुल, सड़क का निर्माण या भवन निर्माण के अधीन कोई संक्रिया"> बाँध, पुल, सड़क का
+              निर्माण या भवन निर्माण के अधीन कोई संक्रिया
+            </ion-select-option>
+            <ion-select-option value="स्विमिंग पूल, गोल्फ कोर्स आदि / सहित अन्य मनोरंजन सुविधाओं का निर्माण कार्य">
+              स्विमिंग पूल, गोल्फ कोर्स आदि / सहित अन्य मनोरंजन सुविधाओं का निर्माण कार्य
+            </ion-select-option>
+            <ion-select-option value="लिपिकीय / लेखा-कर्म (किसी निर्माण अधिष्ठान लिपिक व लेखाकार के रूप में कार्यरत
+            सभी प्रकार के कर्मकार के लिए)"> लिपिकीय / लेखा-कर्म (किसी निर्माण अधिष्ठान लिपिक व लेखाकार के रूप में
+              कार्यरत
+              सभी प्रकार के कर्मकार के लिए)</ion-select-option>
+            <ion-select-option value="सभी प्रकार के पत्थर काटने, तोड़ने व पीसने का कार्य"> सभी प्रकार के पत्थर काटने,
+              तोड़ने व पीसने का कार्य</ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.workType.errors?.required">
+          <ion-text>
+            * Work type is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">वैवाहिक स्थिति</ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" [interfaceOptions]="genderTypeHeader" placeholder="-- चुनें --"
+            formControlName="maritalStatus">
+            <ion-select-option value="विवाहित">विवाहित</ion-select-option>
+            <ion-select-option value="अविवाहित">अविवाहित</ion-select-option>
+            <ion-select-option value="विधवा">विधवा</ion-select-option>
+            <ion-select-option value="विधुर">विधुर</ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.maritalStatus.errors?.required">
+          <ion-text>
+            * Marital Status is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">आयु</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="आयु" formControlName="age"></ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.age.errors?.required">
+          <ion-text>
+            * Age is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">जाति का नाम</ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" [interfaceOptions]="genderTypeHeader" placeholder="-- चुनें --"
+            formControlName="category">
+            <ion-select-option value="अन्य पिछड़ा वर्ग">अन्य पिछड़ा वर्ग</ion-select-option>
+            <ion-select-option value="अनुसूचित जनजाति">अनुसूचित जनजाति </ion-select-option>
+            <ion-select-option value="अनुसूचित जाति">अनुसूचित जाति</ion-select-option>
+            <ion-select-option value="सामान्य ">सामान्य </ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.category.errors?.required">
+          <ion-text>
+            * Category is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">ई-मेल</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="ई-मेल" formControlName="email"></ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.email.errors?.required">
+          <ion-text>
+            * Email is required. <br />
+          </ion-text>
+        </p>
+        <p class="error" *ngIf="isSubmited && errorControl.email.errors?.pattern">
+          <ion-text>
+            * Valid Email is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">मोबाइल न०</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="tel" placeholder="मोबाइल न०" maxlength="10" formControlName="mobileNo">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.mobileNo.errors?.required">
+          <ion-text>
+            * Valid Mobile No is required. <br />
+          </ion-text>
+        </p>
+        <p class="error" *ngIf="isSubmited && errorControl.mobileNo.errors?.pattern">
+          <ion-text>
+            * Only numerical values allowed. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head">राशनकार्ड संO</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="राशनकार्ड संO" formControlName="rationCardNo">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.rationCardNo.errors?.required">
+          <ion-text>
+            * Ration Card No is required. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head">नियोजक का नाम एवं पता</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="नियोजक का नाम एवं पता"
+            formControlName="niyojakNameAdd">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.niyojakNameAdd.errors?.required">
+          <ion-text>
+            * Niyojak Name and Address is required. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head"> नियोजक मोबाइल न०</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="tel" placeholder="नियोजक मोबाइल न०" maxlength="10"
+            formControlName="niyojakmobileNo">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.niyojakmobileNo.errors?.required">
+          <ion-text>
+            * Valid Mobile No is required. <br />
+          </ion-text>
+        </p>
+        <p class="error" *ngIf="isSubmited && errorControl.niyojakmobileNo.errors?.pattern">
+          <ion-text>
+            * Only numerical values allowed. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">मकान नंबर</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="मकान नंबर" formControlName="buildingNo">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.buildingNo.errors?.required">
+          <ion-text>
+            * Building No is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">गली/मोहल्ला</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="गली/मोहल्ला" formControlName="streetNo">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.streetNo.errors?.required">
+          <ion-text>
+            * Street / village No is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">पोस्ट</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="पोस्ट" formControlName="postOffice">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.postOffice.errors?.required">
+          <ion-text>
+            * Post Office is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">थाना</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="थाना" formControlName="policeStation">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.policeStation.errors?.required">
+          <ion-text>
+            * Police Station is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">राज्य चुनें</ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" [interfaceOptions]="distTypeHeader" placeholder="-- चुनें --"
+            formControlName="stateId" (ionChange)="selectState($event)">
+            <ion-select-option *ngFor="let state of shareData.stateList" [value]="state">{{state.state_name}}
+            </ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.stateId.errors?.required">
+          <ion-text>
+            * State is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">जनपद</ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" [disabled]="isStateId" [interfaceOptions]="areaTypeHeader" placeholder="जनपद"
+            [value]="janpad" [(ngModel)]="janpad" formControlName="janpad" (ionChange)="selectDistrict($event)">
+            <ion-select-option *ngFor="let district of shareData.districtList" [value]="district">
+              {{district.city_name}}
+            </ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.janpad.errors?.required">
+          <ion-text>
+            * Janpad is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">तहसील</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="तहसील" formControlName="tahsil"></ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.tahsil.errors?.required">
+          <ion-text>
+            * Tahsil is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">वार्ड/गांव</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="वार्ड/गांव" formControlName="wardVillage"></ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.wardVillage.errors?.required">
+          <ion-text>
+            * Ward / Village is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">पिन कोड</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="tel" maxlength="6" placeholder="पिन कोड" formControlName="pinCode">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.pinCode.errors?.required">
+          <ion-text>
+            * Pin Code is required. <br />
+          </ion-text>
+        </p>
+        <p class="error" *ngIf="isSubmited && errorControl.pinCode.errors?.pattern">
+          <ion-text>
+            * Only numerical values allowed. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">१२ माह में निर्माण कार्य दिनों की संख्या</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="१२ माह में निर्माण कार्य दिनों की संख्या"
+            formControlName="workDaysInYear"></ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.workDaysInYear.errors?.required">
+          <ion-text>
+            * Work days in Year is required. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head">अंशदान (नवीनीकरण) अवधि</ion-label>
+        <ion-row class="item-row" size="12">
+          <ion-col class="check-box-col">
+            <ion-checkbox color="dark" (ionChange)="getContributionDuration($event,'1year')">
+            </ion-checkbox>
+            <ion-label class="chebox-label">1 वर्ष</ion-label>
+          </ion-col>
+
+          <ion-col class="check-box-col">
+            <ion-checkbox color="dark" (ionChange)="getContributionDuration($event,'2year')">
+            </ion-checkbox>
+            <ion-label class="chebox-label">2 वर्ष</ion-label>
+          </ion-col>
+
+          <ion-col class="check-box-col">
+            <ion-checkbox color="dark" (ionChange)="getContributionDuration($event,'3year')">
+            </ion-checkbox>
+            <ion-label class="chebox-label">3 वर्ष</ion-label>
+          </ion-col>
+
+        </ion-row>
+
+        <ion-label class="label-head">पंजीकरण की राशि</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="पंजीकरण की राशि" [disabled]="true"
+            formControlName="registrationAmount">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.registrationAmount.errors?.required">
+          <ion-text>
+            * Registration Amountis required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">अंशदान राशि</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="अंशदान राशि" [disabled]="true"
+            formControlName="contributionAmount">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.contributionAmount.errors?.required">
+          <ion-text>
+            * Contribution amount is required. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head">श्रमिक मनरेगा में कार्यरत</ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" [interfaceOptions]="genderTypeHeader" placeholder="श्रमिक मनरेगा में कार्यरत"
+            formControlName="manregaWorking">
+            <ion-select-option value="नहीं">नहीं</ion-select-option>
+            <ion-select-option value="हाँ">हाँ</ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.manregaWorking.errors?.required">
+          <ion-text>
+            * Working Manrega is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">श्रमिक किसी अन्य बोर्ड का सदस्य</ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" [interfaceOptions]="genderTypeHeader"
+            placeholder="श्रमिक किसी अन्य बोर्ड का सदस्य" formControlName="otherBoardMember">
+            <ion-select-option value="नहीं">नहीं</ion-select-option>
+            <ion-select-option value="हाँ">हाँ</ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.otherBoardMember.errors?.required">
+          <ion-text>
+            * Other Board member is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">आधार कार्ड नंबर</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="tel" maxlength="12" placeholder="आधार कार्ड नंबर" formControlName="adharNo">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.adharNo.errors?.required">
+          <ion-text>
+            * Adhar No is required. <br />
+          </ion-text>
+        </p>
+        <p class="error" *ngIf="isSubmited && errorControl.adharNo.errors?.pattern">
+          <ion-text>
+            * Only Numerical values allowed. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">नॉमिनी का नाम (हिंदी )</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="नॉमिनी का नाम" formControlName="nomineeNameHindi">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.nomineeNameHindi.errors?.required">
+          <ion-text>
+            * Nominee Name Hindi is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">नॉमिनी का नाम (English)</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="नॉमिनी का नाम" formControlName="nomineeNameEnglish">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.nomineeNameEnglish.errors?.required">
+          <ion-text>
+            * Nominee Name English is required. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head">श्रमिक के शिक्षा का स्तर</ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" [interfaceOptions]="genderTypeHeader" placeholder="श्रमिक के शिक्षा का स्तर"
+            formControlName="laborEducation">
+            <ion-select-option value="निरक्षर">निरक्षर</ion-select-option>
+            <ion-select-option value="पाँचवी पास">पाँचवी पास</ion-select-option>
+            <ion-select-option value="आँठवी पास">आँठवी पास</ion-select-option>
+            <ion-select-option value="मेट्रिक">मेट्रिक</ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.laborEducation.errors?.required">
+          <ion-text>
+            * Labor Education is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">श्रमिक से सम्बन्ध</ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" [interfaceOptions]="genderTypeHeader" placeholder="श्रमिक से सम्बन्ध"
+            formControlName="laborRelation">
+            <ion-select-option value="पत्नी">पत्नी</ion-select-option>
+            <ion-select-option value="पुत्र">पुत्र</ion-select-option>
+            <ion-select-option value="पुत्री">पुत्री</ion-select-option>
+            <ion-select-option value="पति">पति</ion-select-option>
+            <ion-select-option value="पिता">पिता</ion-select-option>
+            <ion-select-option value="माता">माता</ion-select-option>
+            <ion-select-option value="भाई">भाई</ion-select-option>
+            <ion-select-option value="बहन">बहन</ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.laborRelation.errors?.required">
+          <ion-text>
+            * Labor Relation is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">श्रमिक के बैंक का नाम</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="श्रमिक के बैंक का नाम"
+            formControlName="LaborbankName"></ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.LaborbankName.errors?.required">
+          <ion-text>
+            * Bank Name is required. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head">बैंक शाखा</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="बैंक शाखा" formControlName="bankBranch">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.bankBranch.errors?.required">
+          <ion-text>
+            * Bank Branch No is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">बैंक खाता नंबर</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="बैंक खाता नंबर" formControlName="bankAccountNo">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.bankAccountNo.errors?.required">
+          <ion-text>
+            * Bank Account No is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">आई० एफ० एस० सी० कोड</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="आई० एफ० एस० सी० कोड" formControlName="ifscCode">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.ifscCode.errors?.required">
+          <ion-text>
+            * I F S C is required. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head">बैंक खाते के प्रकार</ion-label>
+        <ion-row class="item-row">
+          <ion-select class="select-class" [interfaceOptions]="genderTypeHeader" placeholder="-- चुनें --"
+            formControlName="bankAccType">
+            <ion-select-option value="बचत">बचत</ion-select-option>
+            <ion-select-option value="चालू">चालू</ion-select-option>
+            <ion-select-option value="जनधन">जनधन</ion-select-option>
+          </ion-select>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.bankAccType.errors?.required">
+          <ion-text>
+            * Bank Account Type is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">ईoपीoएफo (यदि पंजीकृत हो तो )</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="ईoपीoएफo (यदि पंजीकृत हो तो )"
+            formControlName="ePfNo">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.ePfNo.errors?.required">
+          <ion-text>
+            * E P F is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">ईoएसoआईo (यदि पंजीकृत हो तो )</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="ईoएसoआईo (यदि पंजीकृत हो तो )"
+            formControlName="eSiNo">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.eSiNo.errors?.required">
+          <ion-text>
+            * E S I is required. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head">Upload Photo</ion-label>
+        <ion-row class="item-row">
+          <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('profile')">Choose File
+          </ion-button>
+        </ion-row>
+
+        <ion-row class="itemheight1" *ngIf="profilePhoto!==null">
+          <div class="inner">
+            <img class="selected-img" src="{{profilePhoto}}" name="image5" alt="image">
+            <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('profile')">
+              <ion-icon name="close-outline">
+              </ion-icon>
+            </ion-button>
+          </div>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && profilePhoto==null">
+          <ion-text>
+            * Photo is required. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head">नियोजन प्रमाण पत्र</ion-label>
+        <ion-row class="item-row">
+          <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('niyojan')">Choose File
+          </ion-button>
+        </ion-row>
+
+        <ion-row class="itemheight1" *ngIf="niyojanPhoto!==null">
+          <div class="inner">
+            <img class="selected-img" src="{{niyojanPhoto}}" name="image5" alt="image">
+            <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('niyojan')">
+              <ion-icon name="close-outline">
+              </ion-icon>
+            </ion-button>
+          </div>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && niyojanPhoto==null">
+          <ion-text>
+            * Niyojan Certificate is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">आधार कार्ड</ion-label>
+        <ion-row class="item-row">
+          <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('adhar')">Choose File
+          </ion-button>
+        </ion-row>
+
+        <ion-row class="itemheight1" *ngIf="adharPhoto!==null">
+          <div class="inner">
+            <img class="selected-img" src="{{adharPhoto}}" name="image5" alt="image">
+            <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('adhar')">
+              <ion-icon name="close-outline">
+              </ion-icon>
+            </ion-button>
+          </div>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && adharPhoto==null">
+          <ion-text>
+            * Adhar Card Photo is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">अपलोड बैंक पासबुक</ion-label>
+        <ion-row class="item-row">
+          <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('passbook')">Choose File
+          </ion-button>
+        </ion-row>
+
+        <ion-row class="itemheight1" *ngIf="passbookPhoto!==null">
+          <div class="inner">
+            <img class="selected-img" src="{{passbookPhoto}}" name="image5" alt="image">
+            <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('passbook')">
+              <ion-icon name="close-outline">
+              </ion-icon>
+            </ion-button>
+          </div>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && passbookPhoto==null">
+          <ion-text>
+            * Bank Passbook Photo is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">आय प्रमाण पत्र</ion-label>
+        <ion-row class="item-row">
+          <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('income')">Choose File
+          </ion-button>
+        </ion-row>
+
+        <ion-row class="itemheight1" *ngIf="incomePhoto!==null">
+          <div class="inner">
+            <img class="selected-img" src="{{incomePhoto}}" name="image5" alt="image">
+            <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('income')">
+              <ion-icon name="close-outline">
+              </ion-icon>
+            </ion-button>
+          </div>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && incomePhoto==null">
+          <ion-text>
+            * Income Certificate is required. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head">निवास प्रमाण पत्र</ion-label>
+        <ion-row class="item-row">
+          <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('nivas')">Choose File
+          </ion-button>
+        </ion-row>
+
+        <ion-row class="itemheight1" *ngIf="nivasPhoto!==null">
+          <div class="inner">
+            <img class="selected-img" src="{{nivasPhoto}}" name="image5" alt="image">
+            <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('nivas')">
+              <ion-icon name="close-outline">
+              </ion-icon>
+            </ion-button>
+          </div>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && nivasPhoto==null">
+          <ion-text>
+            * Nivas Certificate is required. <br />
+          </ion-text>
+        </p>
+
+        <hr>
+        <hr class="new1">
+        <ion-card [formGroup]="memberRowForm" novalidate>
+
+          <ion-row class="row-head">
+            <ion-col>
+              <ion-text class="heading-text">
+                Add Member
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="value-text">
+                {{playerCount}}
+              </ion-text>
+            </ion-col>
+
+          </ion-row>
+
+          <hr>
+          <ion-label class="label-head">सदस्य का नाम (हिंदी English)</ion-label>
+          <ion-row class="item-row">
+            <ion-input class="input-field" type="text" placeholder="सदस्य का नाम" [(ngModel)]="memberName"
+              formControlName="memberName">
+            </ion-input>
+          </ion-row>
+          <p class="error" *ngIf="isSubmited2 && errorControl2.memberName.errors?.required">
+            <ion-text>
+              * Member Name is required. <br />
+            </ion-text>
+          </p>
+
+
+          <ion-label class="label-head">पिता/पति का नाम (हिंदी English)</ion-label>
+          <ion-row class="item-row">
+            <ion-input class="input-field" type="text" placeholder="पिता/पति का नाम" [(ngModel)]="fatherName"
+              formControlName="fatherName">
+            </ion-input>
+          </ion-row>
+          <p class="error" *ngIf="isSubmited2 && errorControl2.fatherName.errors?.required">
+            <ion-text>
+              * Father Name is required. <br />
+            </ion-text>
+          </p>
+
+          <ion-label class="label-head">संबंध</ion-label>
+          <ion-row class="item-row">
+            <ion-input class="input-field" type="text" placeholder="संबंध" [(ngModel)]="memberRelation"
+              formControlName="memberRelation">
+            </ion-input>
+          </ion-row>
+          <p class="error" *ngIf="isSubmited2 && errorControl2.memberRelation.errors?.required">
+            <ion-text>
+              * Relation is required. <br />
+            </ion-text>
+          </p>
+
+          <ion-label class="label-head">जन्मतिथि</ion-label>
+          <ion-row class="item-row">
+            <ion-datetime class="date-text" placeholder="जन्मतिथि" displayFormat="DD-MMM-YYYY"
+              pickerFormat="DD-MMM-YYYY" min="1960" max="2030" formControlName="memberDob"></ion-datetime>
+            <ion-icon class="date-icon2" name="calendar-number-outline"></ion-icon>
+          </ion-row>
+          <p class="error" *ngIf="isSubmited2 && errorControl2.memberDob.errors?.required">
+            <ion-text>
+              * Member Dob is required. <br />
+            </ion-text>
+          </p>
+
+          <ion-label class="label-head">आधार कार्ड संख्या</ion-label>
+          <ion-row class="item-row">
+            <ion-input class="input-field" type="text" placeholder="आधार कार्ड संख्या" [(ngModel)]="memberAdhar"
+              formControlName="memberAdhar">
+            </ion-input>
+          </ion-row>
+          <p class="error" *ngIf="isSubmited2 && errorControl2.memberAdhar.errors?.required">
+            <ion-text>
+              * Member Adhar is required. <br />
+            </ion-text>
+          </p>
+
+        </ion-card>
+        <ion-row>
+          <ion-col>
+          </ion-col>
+          <ion-col>
+            <ion-button class="add-btn" expand="block" type="submit" (click)="addMember()">+ Add
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+
+
+
+        <span *ngIf="memberArray!==null">
+          <ion-card *ngFor="let item of memberArray;let j=index">
+
+            <ion-row class="row-head">
+              <ion-col>
+                <ion-text class="heading-text">
+                  Member No : {{j+1}}
+                </ion-text>
+              </ion-col>
+              <ion-col class="remove-icon-row">
+                <ion-icon style="font-size: 25px;" (click)="removeMember(j,item)" name="close-outline"></ion-icon>
+              </ion-col>
+            </ion-row>
+
+
+            <ion-item line="full" class="itemheight">
+              <ion-col size="5">
+                <ion-text class="head-text">
+                  Member Name
+                </ion-text>
+              </ion-col>
+              <ion-col size="1">
+                <ion-text>
+                  <strong>:</strong>
+                </ion-text>
+              </ion-col>
+              <ion-col size="6">
+                <ion-text class="val-text">
+                  {{item.member_name}}
+                </ion-text>
+              </ion-col>
+            </ion-item>
+
+            <ion-item line="full" class="itemheight">
+              <ion-col size="5">
+                <ion-text class="head-text">
+                  Father Name
+                </ion-text>
+              </ion-col>
+              <ion-col size="1">
+                <ion-text>
+                  <strong>:</strong>
+                </ion-text>
+              </ion-col>
+              <ion-col size="6">
+                <ion-text class="val-text">
+                  {{item.member_fatherName}}
+                </ion-text>
+              </ion-col>
+            </ion-item>
+
+            <ion-item line="full" class="itemheight">
+              <ion-col size="5">
+                <ion-text class="head-text">
+                  Date Of Birth
+                </ion-text>
+              </ion-col>
+              <ion-col size="1">
+                <ion-text>
+                  <strong>:</strong>
+                </ion-text>
+              </ion-col>
+              <ion-col size="6">
+                <ion-text class="val-text">
+                  {{item.member_dob | date: "dd/MM/yyyy"}}
+                </ion-text>
+              </ion-col>
+            </ion-item>
+
+            <ion-item line="full" class="itemheight">
+              <ion-col size="5">
+                <ion-text class="head-text">
+                  Relation
+                </ion-text>
+              </ion-col>
+              <ion-col size="1">
+                <ion-text>
+                  <strong>:</strong>
+                </ion-text>
+              </ion-col>
+              <ion-col size="6">
+                <ion-text class="val-text">
+                  {{item.member_relation}}
+                </ion-text>
+              </ion-col>
+            </ion-item>
+
+            <ion-item line="full" class="itemheight">
+              <ion-col size="5">
+                <ion-text class="head-text">
+                  Adhar No
+                </ion-text>
+              </ion-col>
+              <ion-col size="1">
+                <ion-text>
+                  <strong>:</strong>
+                </ion-text>
+              </ion-col>
+              <ion-col size="6">
+                <ion-text class="val-text">
+                  {{item.member_adharNo}}
+                </ion-text>
+              </ion-col>
+            </ion-item>
+          </ion-card>
+        </span>
+
+        <hr class="new4">
+
+        <hr>
+        <hr>
+        <ion-row>
+          <ion-col>
+            <ion-button class="submit-button" shape="round" fill="outline" (click)="payAndSubmit()">Pay & Submit
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button class="reset-btn" expand="block" type="submit" (click)="resetMainForm()">Reset
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+
+
+      </ion-list>
+    </ion-card>
+  </ion-grid>
+
+
+
+</ion-content>

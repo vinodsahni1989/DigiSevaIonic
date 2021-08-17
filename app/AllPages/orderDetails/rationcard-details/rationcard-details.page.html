@@ -1,0 +1,1809 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Order Details </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-text class="form-name">
+        {{gotFormType.form_name}}
+      </ion-text>
+    </ion-row>
+
+
+    <ion-card>
+
+      <ion-row class="row-head">
+        <ion-col size="6">
+          <ion-text class="heading-text">
+            Order Id - TTPL00{{formDetails.order_id}}
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="value-text">
+            Date: {{formDetails.created_date | date: "dd/MM/yyyy"}}
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <span class="stamp is-nope"> {{formRubberStatus}}</span>
+      <ion-row class="photo-row1">
+        <img class="selected-img" src="{{imageUrl+formDetails.photo}}" alt="photo">
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="button-col">
+          <ion-button class="download-button" shape="round" fill="outline"
+            (click)="downloadAnything(formDetails.photo,'photo')">Download Photo
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            Application For
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.apply}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            Ration Card No
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.card_no}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            What to Change in Ration Card
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.change_ration}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            कार्ड के प्रकार
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.type}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            क्षेत्र चुने
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.area}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            जिला चुने
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.district}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            विकास खंड
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.vikashkhand}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            तहसील
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.tahsil}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            ग्राम पंचायत
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.grampanchayat}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            पिन कोड
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.pin_code}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            आवेदक का पूरा पता (मकान न सहित, लैंडमार्क)
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.full_address}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            मुखिया का नाम
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.full_name}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            पिता का नाम
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.father_name}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            पति का नाम
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.husband_name}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            माता का नाम
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.mother_name}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            वर्ग
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.category}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            जन्मतिथि
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.dob | date: "dd/MM/yyyy"}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            लिंग/Gender
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.gender}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            पेशा/व्यवसाय
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.business}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            मोबाइल
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.mobile_no}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            इमेल
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.email_id}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            वोटर आई०डी०
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.voter_id}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            आधार कार्ड संख्या
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.adhar_no}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            गैस कनेकशन
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.gas_conection}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            गैस पाईप लाइन/सिलिंडर
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.gas_line}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            गैस कन्जुय्मर संख्या
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.customer_no}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            गैस एजेंसी नाम
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.agency_name}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            कोटेदार का नाम
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.kotedar_name}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            वार्षिक आय
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.income}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            विधुत कनेकशन
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.electy_conection}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            विधुत कनेकशन संख्या
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.conection_no}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            बैंक का नाम
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.bank_name}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            बैंक शाखा
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.bank_branch}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            IFSC कोड
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.ifsc_code}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            बैंक खाता नंबर
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.acc_no}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+
+
+      <!-- =============================   Member Details  ================================================= -->
+
+      <ion-item style="--padding-start: 5px !important;" *ngIf="formDetails.member1!==''">
+        <ion-text class="head-text">
+          Member Details
+        </ion-text>
+      </ion-item>
+
+
+
+      <ion-card *ngIf="formDetails.member1!==''">
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              सदस्य का नाम
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.member1}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              पिता/पति का नाम
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.parent1}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              संबंध
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.rele1}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              जन्मतिथि
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.dob1 | date: "dd/MM/yyyy"}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              आधार कार्ड संख्या
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.aadhaar1}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+      </ion-card>
+
+
+      <ion-card *ngIf="formDetails.member2!==''">
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              सदस्य का नाम
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.member2}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              पिता/पति का नाम
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.parent2}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              संबंध
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.rele2}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              जन्मतिथि
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.dob2 | date: "dd/MM/yyyy"}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              आधार कार्ड संख्या
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.aadhaar2}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+      </ion-card>
+
+      <ion-card *ngIf="formDetails.member3!==''">
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              सदस्य का नाम
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.member3}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              पिता/पति का नाम
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.parent3}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              संबंध
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.rele3}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              जन्मतिथि
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.dob3 | date: "dd/MM/yyyy"}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              आधार कार्ड संख्या
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.aadhaar3}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+      </ion-card>
+
+      <ion-card *ngIf="formDetails.member4!==''">
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              सदस्य का नाम
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.member4}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              पिता/पति का नाम
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.parent4}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              संबंध
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.rele4}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              जन्मतिथि
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.dob4 | date: "dd/MM/yyyy"}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              आधार कार्ड संख्या
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.aadhaar4}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+      </ion-card>
+
+      <ion-card *ngIf="formDetails.member5!==''">
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              सदस्य का नाम
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.member5}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              पिता/पति का नाम
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.parent5}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              संबंध
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.rele5}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              जन्मतिथि
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.dob5 | date: "dd/MM/yyyy"}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              आधार कार्ड संख्या
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.aadhaar5}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+      </ion-card>
+
+
+      <ion-card *ngIf="formDetails.member6!==''">
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              सदस्य का नाम
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.member6}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              पिता/पति का नाम
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.parent6}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              संबंध
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.rele6}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              जन्मतिथि
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.dob6 | date: "dd/MM/yyyy"}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              आधार कार्ड संख्या
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.aadhaar6}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+      </ion-card>
+
+      <ion-card *ngIf="formDetails.member7!==''">
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              सदस्य का नाम
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.member7}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              पिता/पति का नाम
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.parent7}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              संबंध
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.rele7}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              जन्मतिथि
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.dob7 | date: "dd/MM/yyyy"}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              आधार कार्ड संख्या
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.aadhaar7}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+      </ion-card>
+
+
+      <ion-card *ngIf="formDetails.member8!==''">
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              सदस्य का नाम
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.member8}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              पिता/पति का नाम
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.parent8}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              संबंध
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.rele8}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              जन्मतिथि
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.dob8 | date: "dd/MM/yyyy"}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              आधार कार्ड संख्या
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.aadhaar8}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+      </ion-card>
+
+
+      <ion-card *ngIf="formDetails.member9!==''">
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              सदस्य का नाम
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.member9}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              पिता/पति का नाम
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.parent9}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              संबंध
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.rele9}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              जन्मतिथि
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.dob9 | date: "dd/MM/yyyy"}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              आधार कार्ड संख्या
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.aadhaar9}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+      </ion-card>
+
+      <ion-card *ngIf="formDetails.member10!==''">
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              सदस्य का नाम
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.member10}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              पिता/पति का नाम
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.parent10}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              संबंध
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.rele10}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              जन्मतिथि
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.dob10 | date: "dd/MM/yyyy"}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              आधार कार्ड संख्या
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{formDetails.aadhaar10}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+      </ion-card>
+
+
+      <ion-row class="photo-row">
+        <ion-col>
+          <ion-label class="label-head4">बैंक पासबुक</ion-label>
+          <hr>
+          <img class="selected-img" src="{{imageUrl+formDetails.bank_passbook}}">
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="button-col">
+          <ion-button class="download-button" shape="round" fill="outline"
+            (click)="downloadAnything(formDetails.bank_passbook,'bank_passbook')">Download Bank Passbook
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="photo-row">
+        <ion-col>
+          <ion-label class="label-head4">आधार कार्ड</ion-label>
+          <hr>
+          <img class="selected-img" src="{{imageUrl+formDetails.adhar_card}}">
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="button-col">
+          <ion-button class="download-button" shape="round" fill="outline"
+            (click)="downloadAnything(formDetails.adhar_card,'adhar_card')">Download Adhaar Card
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="photo-row">
+        <ion-col>
+          <ion-label class="label-head4">Income Certificate</ion-label>
+          <hr>
+          <img class="selected-img" src="{{imageUrl+formDetails.Income_Certificate}}">
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="button-col">
+          <ion-button class="download-button" shape="round" fill="outline"
+            (click)="downloadAnything(formDetails.Income_Certificate,'Income_Certificate')">Download Income Certificate
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+
+    </ion-card>
+
+
+    <ion-card
+      *ngIf=" shareData.userRoleUId=='1' ||shareData.userRoleUId=='7' ||shareData.userRoleUId=='7' ;else templateName">
+      <ion-row class="row-head">
+        <ion-col>
+          <ion-text class="heading-text">
+            Status Update of Order Id - TTPL00{{formDetails.order_id}}
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <hr>
+      <ion-label class="label-head">Select Status</ion-label>
+      <ion-row class="item-row">
+
+        <ion-select class="select-class" placeholder="Select Status" [interfaceOptions]="statusHeader"
+          [(ngModel)]="statusType" *ngIf="formDetails.status=='1'">
+          <ion-select-option value="2">Processing</ion-select-option>
+          <ion-select-option value="3">Canceled</ion-select-option>
+        </ion-select>
+
+        <ion-select class="select-class" placeholder="Select Status" [interfaceOptions]="statusHeader"
+          [(ngModel)]="statusType" *ngIf="formDetails.status==2">
+          <ion-select-option value="2">Processing</ion-select-option>
+          <ion-select-option value="5">Rejected</ion-select-option>
+          <ion-select-option value="4">Completed</ion-select-option>
+        </ion-select>
+
+
+      </ion-row>
+
+      <ion-label class="label-head">Remarks</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="Remarks" [(ngModel)]="remarks">
+        </ion-input>
+      </ion-row>
+
+      <ion-label class="label-head">Upload Document</ion-label>
+      <ion-row class="item-row">
+        <input style="margin-top: 5px;" type="file" #myInput (change)="selectFile($event)">
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button class="submit-button" shape="round" fill="outline" (click)="submitStatus()">Submit</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button class="reset-btn" expand="block" type="submit" (click)="resetStatusUpdate()">Reset
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-card>
+
+    <ion-card>
+      <ion-row class="row-head">
+        <ion-col>
+          <ion-text class="heading-text">
+            Status Update of Order Id - TTPL00{{formDetails.order_id}}
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-card *ngFor="let item of formStatus">
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              Application Status
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{item.status}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              Date of Update
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{item.created_date | date: "dd/MM/yyyy"}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              Remarks
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{item.remarks}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              Download Document
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6" *ngIf="item.statusdocument!==''">
+            <ion-button class="download-button" shape="round" fill="outline"
+              (click)="downloadAnything(item.statusdocument,'Document')">Download
+            </ion-button>
+          </ion-col>
+        </ion-item>
+      </ion-card>
+
+    </ion-card>
+
+  </ion-grid>
+
+
+
+
+</ion-content>

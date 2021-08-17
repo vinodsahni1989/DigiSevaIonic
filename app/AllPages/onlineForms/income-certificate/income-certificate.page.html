@@ -1,0 +1,470 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{getFormName.form_name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <ion-grid>
+
+    <ion-card [formGroup]="incomeForm" novalidate>
+
+      <ion-label class="label-head">राज्य चुनें</ion-label>
+      <ion-row class="item-row">
+        <ion-select class="select-class" [interfaceOptions]="genderTypeHeader" placeholder="-- चुनें --"
+          formControlName="stateId" (ionChange)="selectState($event)">
+          <ion-select-option *ngFor="let state of shareData.stateList" [value]="state">{{state.state_name}}
+          </ion-select-option>
+        </ion-select>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.stateId.errors?.required">
+        <ion-text>
+          * State is required. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-label class="label-head">जिला चुने</ion-label>
+      <ion-row class="item-row">
+        <ion-select class="select-class" [disabled]="isStateId" [interfaceOptions]="genderTypeHeader"
+          placeholder="-- चुनें --" [value]="districtId" [(ngModel)]="districtId" formControlName="districtId"
+          (ionChange)="selectDistrict($event)">
+          <ion-select-option *ngFor="let district of shareData.districtList" [value]="district">
+            {{district.city_name}}
+          </ion-select-option>
+        </ion-select>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.districtId.errors?.required">
+        <ion-text>
+          * District Name is required. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-label class="label-head">आवेदक का निवास</ion-label>
+      <ion-radio-group formControlName="address">
+        <ion-row class="radio-row" size="12">
+          <ion-col class="radio-col">
+            <ion-label class="radio-label">ग्रामीण</ion-label>
+            <ion-radio mode="md" item-right value="ग्रामीण"></ion-radio>
+          </ion-col>
+          <ion-col class="radio-col">
+            <ion-label class="radio-label">नगरीय</ion-label>
+            <ion-radio mode="md" item-right value="नगरीय"></ion-radio>
+          </ion-col>
+        </ion-row>
+      </ion-radio-group>
+      <p class="error" *ngIf="isSubmited && errorControl.address.errors?.required">
+        <ion-text>
+          * Area is required. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-label class="label-head">आवेदक का पूरा नाम</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="आवेदक का पूरा नाम" formControlName="fullName">
+        </ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.fullName.errors?.required">
+        <ion-text>
+          * Full Name is required. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-label class="label-head">पिता/पति /संरक्षक का नाम </ion-label>
+      <ion-radio-group formControlName="fatherHusbandType">
+        <ion-row>
+          <ion-col class="radio-col">
+            <ion-label class="radio-label">पिता</ion-label>
+            <ion-radio mode="md" item-left value="पिता"></ion-radio>
+          </ion-col>
+          <ion-col class="radio-col">
+            <ion-label class="radio-label">पति</ion-label>
+            <ion-radio mode="md" item-left value="पति"></ion-radio>
+          </ion-col>
+          <ion-col class="radio-col">
+            <ion-label class="radio-label">संरक्षक</ion-label>
+            <ion-radio mode="md" item-left value="संरक्षक"></ion-radio>
+          </ion-col>
+        </ion-row>
+      </ion-radio-group>
+      <p class="error" *ngIf="isSubmited && errorControl.fatherHusbandType.errors?.required">
+        <ion-text>
+          * Select any One required. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="पिता/पति /संरक्षक का नाम"
+          formControlName="fatherHusbandName"></ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.fatherHusbandName.errors?.required">
+        <ion-text>
+          * This is required. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-label class="label-head">माता का नाम</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="माता का नाम" formControlName="motherName"></ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.motherName.errors?.required">
+        <ion-text>
+          * Mother Name is required. <br />
+        </ion-text>
+      </p>
+
+
+
+      <ion-label class="label-head">जन्मतिथि</ion-label>
+      <ion-row class="item-row">
+        <ion-datetime class="date-text" placeholder="जन्मतिथि" displayFormat="DD-MMM-YYYY" pickerFormat="DD-MMM-YYYY"
+          min="1960" max="2030" formControlName="dob"></ion-datetime>
+        <ion-icon class="date-icon" name="calendar-number-outline"></ion-icon>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.dob.errors?.required">
+        <ion-text>
+          * Date Of Birth is required. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-label class="label-head">आधार नंबर</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="tel" maxlength="12" placeholder="आधार नंबर" formControlName="adharNo">
+        </ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.adharNo.errors?.required">
+        <ion-text>
+          * Adhar no is required. <br />
+        </ion-text>
+      </p>
+      <p class="error" *ngIf="isSubmited && errorControl.adharNo.errors?.pattern">
+        <ion-text>
+          * Only Numerical values allowed. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">मोबाईल नम्बर</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="tel" maxlength="10" placeholder="मोबाईल नम्बर" formControlName="mobileNo">
+        </ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.mobileNo.errors?.required">
+        <ion-text>
+          * Valid Mobile No is required. <br />
+        </ion-text>
+      </p>
+      <p class="error" *ngIf="isSubmited && errorControl.mobileNo.errors?.pattern">
+        <ion-text>
+          * Only numerical values allowed. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-label class="label-head">आवेदक का व्यवसाय</ion-label>
+      <ion-row class="item-row">
+        <ion-select class="select-class" [interfaceOptions]="genderTypeHeader" placeholder="-- चुनें --"
+          formControlName="business">
+          <ion-select-option value="मजदूरी">मजदूरी</ion-select-option>
+          <ion-select-option value="कृषि">कृषि</ion-select-option>
+          <ion-select-option value="विद्यार्थी">विद्यार्थी</ion-select-option>
+          <ion-select-option value="गृहणी">गृहणी</ion-select-option>
+          <ion-select-option value="सरकारी नौकरी">सरकारी नौकरी</ion-select-option>
+          <ion-select-option value="वकील/डॉक्टर">वकील/डॉक्टर</ion-select-option>
+          <ion-select-option value="अन्य व्यवसाय">अन्य व्यवसाय</ion-select-option>
+        </ion-select>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.business.errors?.required">
+        <ion-text>
+          * Business Type is required. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-label class="label-head">परिवार का विवरण (सदस्यों की संख्या)</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="परिवार का विवरण (सदस्यों की संख्या)"
+          formControlName="familyMemberNo"></ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.familyMemberNo.errors?.required">
+        <ion-text>
+          * Family Member No is required. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-label class="label-head">परिवार की कुल वार्षिक आय</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="परिवार की कुल वार्षिक आय" formControlName="yearIncome">
+        </ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.yearIncome.errors?.required">
+        <ion-text>
+          * Yearly Income is required. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-label class="label-head">आय निर्धारण हेतु आवेदक की श्रेणियाँ</ion-label>
+      <ion-label class="label-head1">(कम से कम एक श्रेणी का विवरण देना अनिवार्य है)</ion-label>
+
+      <ion-label class="label-head">अकुशल भूमिहीन मजदूर / खेतिहर मजदूर से आय रु.</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="Ex-12000" formControlName="incomeFromLabor">
+        </ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.incomeFromLabor.errors?.required">
+        <ion-text>
+          * This is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">कुशल मजदूर/ कुशल खेतिहर मजदूर से आय रु.</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="Ex-12000" formControlName="incomeFromFiled">
+        </ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.incomeFromFiled.errors?.required">
+        <ion-text>
+          * This is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">पेंशन से आय रु.</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="Ex-12000" formControlName="incomeFromPension">
+        </ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.incomeFromPension.errors?.required">
+        <ion-text>
+          * This is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">सेवायोजन से आय रु.</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="Ex-12000" formControlName="incomeFromService">
+        </ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.incomeFromService.errors?.required">
+        <ion-text>
+          * This is required. <br />
+        </ion-text>
+      </p>
+      <ion-label class="label-head2">(कम से कम एक श्रेणी का विवरण देना अनिवार्य है)</ion-label>
+
+      <ion-label class="label-head">निजी व्यवसाय से आय रु.</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="Ex-12000" formControlName="personalIncome">
+        </ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.personalIncome.errors?.required">
+        <ion-text>
+          * This is required. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-label class="label-head2">(दुकान का वार्षिक किराया मूल्य, व्यापार कर विभाग में दाखिल विवरणी की कुल धनराशि
+        एवं वार्षिक आयकर विवरणी की रसीद संलग्न करना अनिवार्य है)</ion-label>
+
+
+      <ion-label class="label-head">आवेदक का स्थायी पता(मकान नम्बर,मौहल्ला/पोस्ट,ग्राम)</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="आवेदक का स्थायी पता" formControlName="permanentAddress">
+        </ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.permanentAddress.errors?.required">
+        <ion-text>
+          * Permanent Address is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">तहसील</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="तहसील" formControlName="tahsil"></ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.tahsil.errors?.required">
+        <ion-text>
+          * Tahsil is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">थाना</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="थाना" formControlName="policeStation"></ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.policeStation.errors?.required">
+        <ion-text>
+          * Ploice station is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">प्रमाण पत्र बनवाने की आवश्य़कता</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="प्रमाण पत्र बनवाने की आवश्य़कता"
+          formControlName="needOfIncomeCertificate"></ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.needOfIncomeCertificate.errors?.required">
+        <ion-text>
+          * This is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">क्या इससे पूर्व प्रमाण पत्र जारी हुआ है ?</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="क्या इससे पूर्व प्रमाण पत्र जारी हुआ है ?"
+          formControlName="prevIncomeCertificateSatus">
+        </ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.prevIncomeCertificateSatus.errors?.required">
+        <ion-text>
+          * This is required. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-label class="label-head">Photo</ion-label>
+      <ion-row class="item-row">
+        <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('profile')">Choose File
+        </ion-button>
+      </ion-row>
+
+      <ion-row class="itemheight1" *ngIf="profilePhoto!==null">
+        <div class="inner">
+          <img class="selected-img" src="{{profilePhoto}}" name="image5" alt="image">
+          <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('profile')">
+            <ion-icon name="close-outline">
+            </ion-icon>
+          </ion-button>
+        </div>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && profilePhoto==null">
+        <ion-text>
+          * Photo is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">स्व० प्रमाणित पत्र</ion-label>
+      <ion-row class="item-row">
+        <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('self')">Choose File
+        </ion-button>
+      </ion-row>
+
+
+      <ion-row class="itemheight1" *ngIf="selfPhoto!==null">
+        <div class="inner">
+          <img class="selected-img" src="{{selfPhoto}}" name="image5" alt="image">
+          <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('self')">
+            <ion-icon name="close-outline">
+            </ion-icon>
+          </ion-button>
+        </div>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && selfPhoto==null">
+        <ion-text>
+          * Self Attested Photo is required. <br />
+        </ion-text>
+      </p>
+
+      <!-- <ion-label class="label-head">पार्षद या वार्डेन या ग्राम प्रधान का जाति प्रमाण पत्र</ion-label>
+      <ion-row class="item-row">
+        <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('caste')">Choose File
+        </ion-button>
+      </ion-row>
+
+      <ion-row class="itemheight1" *ngIf="castePhoto!==null">
+        <div class="inner">
+          <img class="selected-img" src="{{castePhoto}}" name="image5" alt="image">
+          <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('caste')">
+            <ion-icon name="close-outline">
+            </ion-icon>
+          </ion-button>
+        </div>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && castePhoto==null">
+        <ion-text>
+          * Caste Photo is required. <br />
+        </ion-text>
+      </p> -->
+
+      <ion-label class="label-head">आधार कार्डं</ion-label>
+      <ion-row class="item-row">
+        <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('adhar')">Choose File
+        </ion-button>
+      </ion-row>
+
+      <ion-row class="itemheight1" *ngIf="adharPhoto!==null">
+        <div class="inner">
+          <img class="selected-img" src="{{adharPhoto}}" name="image5" alt="image">
+          <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('adhar')">
+            <ion-icon name="close-outline">
+            </ion-icon>
+          </ion-button>
+        </div>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && adharPhoto==null">
+        <ion-text>
+          * Adhar Photo is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">अन्य कोई आवश्यक दस्तावेज़</ion-label>
+      <ion-row class="item-row">
+        <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('other')">Choose File
+        </ion-button>
+      </ion-row>
+
+      <ion-row class="itemheight1" *ngIf="otherPhoto!==null">
+        <div class="inner">
+          <img class="selected-img" src="{{otherPhoto}}" name="image5" alt="image">
+          <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('other')">
+            <ion-icon name="close-outline">
+            </ion-icon>
+          </ion-button>
+        </div>
+      </ion-row>
+
+
+      <ul style="margin: 0px 10px 0px 0px;">
+        <li>परिवार की आय का आगणन करने हेतु परिवार में पति-पत्नी,अवयस्क एवं अविवाहित वयस्क संताने तथा आश्रित माता पिता
+          को सम्मिलित किया जायेगा इसमें आश्रित का तात्पर्य जिनकी स्वयं की कोई आय न हो और जो परिवार के साथ रहते हो । आय
+          का आगणन करने के लिए परिवार की समस्त आय को संज्ञान में लिया जायेगा । परिवार के मुखिया की आय एवं परिवार के
+          अन्य सदस्यों की आय के आधार पर आय प्रमाणपत्र को निर्गत किया जायेगा परन्तु परिवार में कोई विधवा अथवा
+          परित्यवक्ता महिला होने की दशा में उसकी आय में सम्मलित नहीं किया जायेगा |</li>
+        <li><strong>कुशल मजदुर: </strong>लोहार, बढ़ई, राजगीर, शिल्पकार, फिरिवाले, खोमचे वाले, पान की गुमटी वाले तथा
+          अन्य छोटे व्यवसायी
+        </li>
+        <li><strong>निजी व्यवसाय:</strong> डॉक्टर, वकील, आर्किटेक्ट, चार्टेड एकॉउन्टेन्ट, माध्यम एव बड़े व्यवसायी</li>
+      </ul>
+
+
+      <hr>
+      <hr>
+      <ion-row>
+        <ion-col>
+          <ion-button class="submit-button" shape="round" fill="outline" (click)="payAndSubmit()">Pay & Submit
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button class="reset-btn" expand="block" type="submit" (click)="resetMainForm()">Reset
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-card>
+
+  </ion-grid>
+
+
+</ion-content>

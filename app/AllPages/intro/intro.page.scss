@@ -1,0 +1,64 @@
+/* Smartphones (portrait and landscape) ----------- */
+@media screen and (min-width: 320px) and (max-width: 480px) and (orientation: portrait) {
+      ion-content {
+            --padding-bottom: 0;
+      }
+
+      ion-slides {
+            height: 100%;
+            --padding-bottom: 1rem;
+      }
+
+      ion-slide {
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            flex-direction: column;
+            // padding-left: 1rem;
+            // padding-right: 1rem;
+            padding-left: 0px;
+            padding-right: 0px;
+            text-align: left;
+            justify-content: flex-end;
+      }
+
+      ion-row {
+            &.btn-skip {
+                  width: 100%;
+                  ion-col {
+                        position: absolute;
+                        z-index: 10000;
+                        bottom: 10px;
+                        right: 0;
+                  }
+                  ion-button {
+                        --border-radius: 8px;
+                        --padding-start: 1.5rem;
+                        --padding-end: 1.5rem;
+                        margin-bottom: 1rem;
+                        margin-right: 15px;
+                        font-size: 17px;
+                        --ion-color-base: #6d5196 !important;
+                        height: 35px;
+                        width: 90%;
+                  }
+            }
+      }
+
+      .logo-row {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+            padding: 15px 0px 0px 0px;
+      }
+      .image-logo {
+            width: 100%;
+      }
+      .card-in-center {
+            display: flex;
+            justify-content: normal;
+            height: auto;
+            margin-top: 0px;
+      }
+}

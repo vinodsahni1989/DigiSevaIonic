@@ -1,0 +1,154 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Manage Wallet Balance</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+
+    <ion-card [formGroup]="walletmanageForm" novalidate>
+
+      <ion-row class="upper-row">
+        <ion-label class="uper-text">
+          Update Wallet Balance
+        </ion-label>
+      </ion-row>
+
+      <ion-list style="margin-top: 5px;">
+        <ion-radio-group formControlName="WalletType" (ionChange)="selectedRadioType($event.target.value)">
+          <ion-row class="radio-row" size="12">
+            <ion-col class="radio-col">
+              <ion-label class="radio-label"> Topup Wallet</ion-label>
+              <ion-radio mode="md" item-right value="1"></ion-radio>
+            </ion-col>
+            <ion-col class="radio-col">
+              <ion-label class="radio-label">Deduct Wallet</ion-label>
+              <ion-radio mode="md" item-right value="2"></ion-radio>
+            </ion-col>
+          </ion-row>
+        </ion-radio-group>
+        <p class="error" *ngIf="isSubmited && errorControl.WalletType.errors?.required">
+          <ion-text>
+            * Wallet Type is required. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head">Name</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="Name" formControlName="name"
+            disabled="{{isDisabled}}"></ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.name.errors?.required">
+          <ion-text>
+            * Name is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Mobile No.</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="tel" maxlength="10" placeholder="Mobile No." formControlName="mobileNo"
+            disabled="{{isDisabled}}">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.mobileNo.errors?.required">
+          <ion-text>
+            * Valid Mobile No is required. <br />
+          </ion-text>
+        </p>
+        <p class="error" *ngIf="isSubmited && errorControl.mobileNo.errors?.pattern">
+          <ion-text>
+            * Only numerical values allowed. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head">Email ID</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="Email ID" formControlName="email"
+            disabled="{{isDisabled}}"></ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.email.errors?.required">
+          <ion-text>
+            * Email is required. <br />
+          </ion-text>
+        </p>
+        <p class="error" *ngIf="isSubmited && errorControl.email.errors?.pattern">
+          <ion-text>
+            * Valid Email is required. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head">Available Balance</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="Available Balance" formControlName="avlBalance"
+            disabled="{{isDisabled}}">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.avlBalance.errors?.required">
+          <ion-text>
+            * Available Balance is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">{{actionType}}</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder={{actionType}} [(ngModel)]="addBalance"
+            formControlName="addBalance" (input)='updateBalance($event.target.value)'>
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.addBalance.errors?.required">
+          <ion-text>
+            * Add Balance is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Total Balance</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="Total Balance" formControlName="totalBalance"
+            [(ngModel)]="totalBalance" disabled="{{isDisabled}}">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.totalBalance.errors?.required">
+          <ion-text>
+            * Total Balance is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Remark</ion-label>
+        <ion-row class="item-row-address">
+          <ion-textarea class="text-area" rows="3" type="text" placeholder="Remark" formControlName="remark">
+          </ion-textarea>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.remark.errors?.required">
+          <ion-text>
+            * Remark is required. <br />
+          </ion-text>
+        </p>
+
+
+        <hr>
+        <hr>
+        <ion-row *ngIf="updateBalanceFlag">
+          <ion-col>
+            <ion-button class="submit-button" shape="round" fill="outline" (click)="updateWallet()">Update
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button class="reset-btn" expand="block" type="submit" (click)="resetMainForm()">Reset
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+    </ion-card>
+
+  </ion-grid>
+
+
+</ion-content>

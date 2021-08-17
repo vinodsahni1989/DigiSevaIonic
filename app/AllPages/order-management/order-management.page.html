@@ -1,0 +1,210 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{gotScreenName}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false">
+      </ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid *ngIf="screenDataArray!==null">
+
+    <ion-card *ngFor="let item of screenDataArray  | slice:0:loadfirstItem;  let i = index;">
+
+      <ion-row class="row-head">
+        <ion-col>
+          <ion-text class="heading-text">
+            Order Id
+          </ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text class="value-text">
+            TTPL00{{item.order_id}}
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            Name
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{item.name}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            Father Name
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{item.father_name}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            Member Unique Id
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{item.member_unique_id}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            Created Date
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{item.created_date | date: "dd/MM/yyyy"}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            Status
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+
+        <ion-col size="6" *ngIf="item.status=='1'">
+          <ion-text class="val-text">
+            Pending
+          </ion-text>
+        </ion-col>
+
+        <ion-col size="6" *ngIf="item.status=='2'">
+          <ion-text class="val-text">
+            Processing
+          </ion-text>
+        </ion-col>
+
+        <ion-col size="6" *ngIf="item.status=='3'">
+          <ion-text class="val-text">
+            Cancelled
+          </ion-text>
+        </ion-col>
+
+        <ion-col size="6" *ngIf="item.status=='4'">
+          <ion-text class="val-text">
+            Completed
+          </ion-text>
+        </ion-col>
+        <ion-col size="6" *ngIf="item.status=='5'">
+          <ion-text class="val-text">
+            Rejected
+          </ion-text>
+        </ion-col>
+
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            Form Name
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{item.form_name}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            Action
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button class="view-button" shape="round" fill="outline" (click)="viewOrderDetails(item)">View Form
+          </ion-button>
+        </ion-col>
+      </ion-item>
+
+    </ion-card>
+
+
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreData($event)">
+      <ion-infinite-scroll-content loadingSpinner="crescent">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+  </ion-grid>
+
+
+
+  <ion-grid *ngIf="screenDataArray?.length == 0">
+    <div class="no-order-found-div">
+      <ion-text>
+        No Orders Found. !!
+      </ion-text>
+    </div>
+  </ion-grid>
+
+  <!-- <ion-grid *ngIf="screenDataArray==''">
+    <div class="no-order-found-div">
+      <ion-text>
+        No Record Found. !!
+      </ion-text>
+    </div>
+  </ion-grid> -->
+
+
+</ion-content>

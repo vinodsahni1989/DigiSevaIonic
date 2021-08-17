@@ -1,0 +1,254 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{getFormName.form_name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-card [formGroup]="pasPortForm" novalidate>
+      <ion-list style="margin-top: 5px;">
+
+        <ion-label class="label-head">Full Name</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="Full Name" formControlName="fullName"></ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.fullName.errors?.required">
+          <ion-text>
+            * Full Name is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Father's Name</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="Father's Name" formControlName="fatherName">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.fatherName.errors?.required">
+          <ion-text>
+            * Father Name is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Mother's Name</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="Mother's Name" formControlName="motherName">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.motherName.errors?.required">
+          <ion-text>
+            * Mother Name is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Date of Birth</ion-label>
+        <ion-row class="item-row">
+          <ion-datetime class="date-text" placeholder="Date of Birth" displayFormat="DD-MMM-YYYY"
+            pickerFormat="DD-MMM-YYYY" min="1960" max="2030" formControlName="dob"></ion-datetime>
+          <ion-icon class="date-icon" name="calendar-number-outline"></ion-icon>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.dob.errors?.required">
+          <ion-text>
+            * Date of Birth is required. <br />
+          </ion-text>
+        </p>
+
+
+        <ion-label class="label-head">Spouse/Wife Name</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="Spouse/Wife Name" formControlName="supouse_wifeName">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.supouse_wifeName.errors?.required">
+          <ion-text>
+            * Spouse/Wife Name is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Mobile No.</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="tel" maxlength="10" placeholder="Mobile No." formControlName="mobileNo">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.mobileNo.errors?.required">
+          <ion-text>
+            * Valid Mobile No is required. <br />
+          </ion-text>
+        </p>
+        <p class="error" *ngIf="isSubmited && errorControl.mobileNo.errors?.pattern">
+          <ion-text>
+            * Only numerical values allowed. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Email ID</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="Email ID" formControlName="emailId"></ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.emailId.errors?.required">
+          <ion-text>
+            * Valid Email Id is required. <br />
+          </ion-text>
+        </p>
+        <p class="error" *ngIf="isSubmited && errorControl.emailId.errors?.pattern">
+          <ion-text>
+            * Please provide valid Email Id. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Aadhar No.</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="tel" maxlength="12" placeholder="Aadhar No." formControlName="adharNo">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.adharNo.errors?.required">
+          <ion-text>
+            * Adhar No is required. <br />
+          </ion-text>
+        </p>
+        <p class="error" *ngIf="isSubmited && errorControl.adharNo.errors?.pattern">
+          <ion-text>
+            * Only numerical values allowed. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Appointment Date</ion-label>
+        <ion-row class="item-row">
+          <ion-datetime class="date-text" placeholder="Appointment Date" displayFormat="DD-MMM-YYYY"
+            pickerFormat="DD-MMM-YYYY" min="1960" max="2030" formControlName="appointDate"></ion-datetime>
+          <ion-icon class="date-icon" name="calendar-number-outline"></ion-icon>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.appointDate.errors?.required">
+          <ion-text>
+            * Appointment Date is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">District Name</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="District Name" formControlName="districtName">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.districtName.errors?.required">
+          <ion-text>
+            * District Name is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Police Station</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="Police Station" formControlName="policeStation">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.policeStation.errors?.required">
+          <ion-text>
+            * Police Station is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Pin Code</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="tel" maxlength="6" placeholder="Pin Code" formControlName="pinCode">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.pinCode.errors?.required">
+          <ion-text>
+            * Pin Code is required. <br />
+          </ion-text>
+        </p>
+        <p class="error" *ngIf="isSubmited && errorControl.pinCode.errors?.pattern">
+          <ion-text>
+            * Only numerical values allowed. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Full Address</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="Full Address" formControlName="fullAddress">
+          </ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.fullAddress.errors?.required">
+          <ion-text>
+            * Full Address is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">PSK Name</ion-label>
+        <ion-row class="item-row">
+          <ion-input class="input-field" type="text" placeholder="PSK Name" formControlName="pskName"></ion-input>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && errorControl.pskName.errors?.required">
+          <ion-text>
+            * PSK Name is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Upload Marksheet</ion-label>
+        <ion-row class="item-row">
+          <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('markseat')">Choose File
+          </ion-button>
+        </ion-row>
+
+        <ion-row class="itemheight1" *ngIf="markSeatImage!==null">
+          <div class="inner">
+            <img class="selected-img" src="{{markSeatImage}}" name="image5" alt="image">
+            <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('markseat')">
+              <ion-icon name="close-outline">
+              </ion-icon>
+            </ion-button>
+          </div>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && markSeatImage==null">
+          <ion-text>
+            * Marks Seat Photo is required. <br />
+          </ion-text>
+        </p>
+
+        <ion-label class="label-head">Upload Aadhar Card</ion-label>
+        <ion-row class="item-row">
+          <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('adhar')">Choose File
+          </ion-button>
+        </ion-row>
+
+        <ion-row class="itemheight1" *ngIf="adharImage!==null">
+          <div class="inner">
+            <img class="selected-img" src="{{adharImage}}" name="image5" alt="image">
+            <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('adhar')">
+              <ion-icon name="close-outline">
+              </ion-icon>
+            </ion-button>
+          </div>
+        </ion-row>
+        <p class="error" *ngIf="isSubmited && adharImage==null">
+          <ion-text>
+            * Adhar Card Photo is required. <br />
+          </ion-text>
+        </p>
+
+
+        <hr>
+        <hr>
+        <ion-row>
+          <ion-col>
+            <ion-button class="submit-button" shape="round" fill="outline" (click)="payAndSubmit()">Pay & Submit
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button class="reset-btn" expand="block" type="submit" (click)="resetMainForm()">Reset
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+
+      </ion-list>
+
+    </ion-card>
+  </ion-grid>
+
+
+
+</ion-content>

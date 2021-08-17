@@ -1,0 +1,688 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Order Details </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-text class="form-name">
+        {{gotFormType.form_name}}
+      </ion-text>
+    </ion-row>
+
+
+    <ion-card>
+
+      <ion-row class="row-head">
+        <ion-col size="6">
+          <ion-text class="heading-text">
+            Order Id - TTPL00{{formDetails.order_id}}
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="value-text">
+            Date: {{formDetails.created_date | date: "dd/MM/yyyy"}}
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <span class="stamp is-nope"> {{formRubberStatus}}</span>
+      <ion-row class="photo-row1">
+        <img class="selected-img" src="{{imageUrl+formDetails.photo}}" alt="photo">
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="button-col">
+          <ion-button class="download-button" shape="round" fill="outline"
+            (click)="downloadAnything(formDetails.photo,'photo')">Download Photo
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            Type
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.type}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            मृतक का पूरा नाम
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.deathreason}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            मृत्यु की दिनाँक
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.death_date}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            लिंग/Gender
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.gender}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            धर्म/Religion
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.religion}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            पिता नाम
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.pname}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            माता का नाम
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.mother}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            पत्नी का नाम
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.wife}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            राष्ट्रीयता
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.nationality}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            मृत्यु स्थान
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.deathplace}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            मृत्यु का कारण
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.deathreason}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            मृतक की आयु (वर्षो में)
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.age}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            जनपद
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.district  }}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            ब्लाक
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.block}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            तहसील
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.tehsil}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            मृतक का पता
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.address}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            आवेदक का नाम
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.applyname}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            मोबाईल नम्बर
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.mobile_no}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            आवेदक का पता
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.app_add}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            क्या मृ्त्यु चिकित्सीय रूप से प्रमाणित की गयी है
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.deathtrit}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            किसी प्रकार की चिकित्सा संबन्धी देख रेख यदि की गई हो
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.dekhrekh}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            पंजीकरण तिथि
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.reg_date}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            पंजीकरण स्थान
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.reg_place}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            पंजीकरण संख्या /कार्ड संख्या
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.reg_no}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            आधार संख्या
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.adhar}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-row class="photo-row">
+        <ion-col>
+          <ion-label class="label-head4">आधार कार्डं</ion-label>
+          <hr>
+          <img class="selected-img" src="{{imageUrl+formDetails.AdharCardPhoto}}">
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="button-col">
+          <ion-button class="download-button" shape="round" fill="outline"
+            (click)="downloadAnything(formDetails.AdharCardPhoto,'AdharCardPhoto')">Download Adhar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="photo-row">
+        <ion-col>
+          <ion-label class="label-head4">Hospital Death Certificate</ion-label>
+          <hr>
+          <img class="selected-img" src="{{imageUrl+formDetails.deathcertificate}}">
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="button-col">
+          <ion-button class="download-button" shape="round" fill="outline"
+            (click)="downloadAnything(formDetails.deathcertificate,'deathcertificate')">Download Death Certificate
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="photo-row">
+        <ion-col>
+          <ion-label class="label-head4">अन्य कोई आवश्यक दस्तावेज़</ion-label>
+          <hr>
+          <img class="selected-img" src="{{imageUrl+formDetails.other}}">
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="button-col">
+          <ion-button class="download-button" shape="round" fill="outline"
+            (click)="downloadAnything(formDetails.other,'other')">Download Other Document
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+
+    </ion-card>
+
+
+    <ion-card
+      *ngIf=" shareData.userRoleUId=='1' ||shareData.userRoleUId=='7' ||shareData.userRoleUId=='7' ;else templateName">
+      <ion-row class="row-head">
+        <ion-col>
+          <ion-text class="heading-text">
+            Status Update of Order Id - TTPL00{{formDetails.order_id}}
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <hr>
+      <ion-label class="label-head">Select Status</ion-label>
+      <ion-row class="item-row">
+        <ion-select class="select-class" placeholder="Select Status" [interfaceOptions]="statusHeader"
+        [(ngModel)]="statusType" *ngIf="formDetails.status=='1'">
+        <ion-select-option value="2">Processing</ion-select-option>
+        <ion-select-option value="3">Canceled</ion-select-option>
+      </ion-select>
+
+      <ion-select class="select-class" placeholder="Select Status" [interfaceOptions]="statusHeader"
+        [(ngModel)]="statusType" *ngIf="formDetails.status==2">
+        <ion-select-option value="2">Processing</ion-select-option>
+        <ion-select-option value="5">Rejected</ion-select-option>
+        <ion-select-option value="4">Completed</ion-select-option>
+      </ion-select>
+      </ion-row>
+
+      <ion-label class="label-head">Remarks</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="Remarks" [(ngModel)]="remarks">
+        </ion-input>
+      </ion-row>
+
+      <ion-label class="label-head">Upload Document</ion-label>
+      <ion-row class="item-row">
+        <input style="margin-top: 5px;" type="file" #myInput (change)="selectFile($event)">
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button class="submit-button" shape="round" fill="outline" (click)="submitStatus()">Submit</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button class="reset-btn" expand="block" type="submit" (click)="resetStatusUpdate()">Reset
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-card>
+
+    <ion-card>
+      <ion-row class="row-head">
+        <ion-col>
+          <ion-text class="heading-text">
+            Status Update of Order Id - TTPL00{{formDetails.order_id}}
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-card *ngFor="let item of formStatus">
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              Application Status
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{item.status}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              Date of Update
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{item.created_date | date: "dd/MM/yyyy"}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              Remarks
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{item.remarks}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              Download Document
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6" *ngIf="item.statusdocument!==''">
+            <ion-button class="download-button" shape="round" fill="outline"
+              (click)="downloadAnything(item.statusdocument,'Document')">Download
+            </ion-button>
+          </ion-col>
+        </ion-item>
+      </ion-card>
+
+    </ion-card>
+
+  </ion-grid>
+
+
+
+
+</ion-content>

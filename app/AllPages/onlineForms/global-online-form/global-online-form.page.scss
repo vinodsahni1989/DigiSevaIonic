@@ -1,0 +1,83 @@
+// /* Smartphones (portrait and landscape) ----------- */
+@media screen and (min-width: 320px) and (max-width: 480px) and (orientation: portrait) {
+      ion-card {
+            box-shadow: none;
+            border: 1px solid #eee;
+      }
+      .row-head-social {
+            background-color: #6d5196;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+      }
+
+      .social-head {
+            font-weight: 600;
+            font-size: 15px;
+            color: #fff;
+      }
+      .text-row {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+            height: 10vh;
+            font-size: 12px;
+            margin: 5px 10px 5px 10px;
+            color: #000;
+      }
+
+      .text-row-inerHtml {
+            display: flex;
+            justify-content: start;
+            text-align: start;
+            align-items: unset;
+            height: auto;
+            font-size: 12px;
+            margin: 10px 10px 5px 10px;
+            color: #000;
+      }
+      .button-row {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0px 15px 0px;
+      }
+      .pay-button {
+            --color: purple;
+            --border-radius: 5px;
+            --padding-top: 0;
+            --padding-start: 10px;
+            --padding-end: 10px;
+            --padding-bottom: 0;
+            font-size: 12px;
+            height: 5vh;
+            text-transform: capitalize;
+            --border-color: purple !important;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+            --border-width: 1px;
+      }
+      .price-row {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            color: #000;
+      }
+
+      .no-order-found-div {
+            text-align: center;
+            justify-content: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -moz-transform: translateX(-50%) translateY(-50%);
+            -webkit-transform: translateX(-50%) translateY(-50%);
+            transform: translateX(-50%) translateY(-50%);
+      }
+}

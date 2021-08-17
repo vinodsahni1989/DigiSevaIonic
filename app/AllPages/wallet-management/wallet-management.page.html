@@ -1,0 +1,507 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{gotScreenTitle}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false">
+      </ion-menu-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end" *ngIf="gotScreenId=='39'" (click)="walletRequest()">
+      <ion-button fill="clear">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div [ngSwitch]="gotScreenName">
+
+    <div *ngSwitchCase="'wallet-balance'">
+
+      <ion-grid *ngIf="screenDataArray!==null">
+
+        <ion-card *ngFor="let item of screenDataArray | slice:0:loadfirstItem;  let i = index;">
+
+          <ion-row class="row-head">
+            <ion-col>
+              <ion-text class="heading-text">
+                UniqueId
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="value-text">
+                {{item.UniqueId}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+
+          <ion-item line="full" class="itemheight">
+            <ion-col size="5">
+              <ion-text class="head-text">
+                Member Name
+              </ion-text>
+            </ion-col>
+            <ion-col size="1">
+              <ion-text>
+                <strong>:</strong>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text class="val-text">
+                {{item.MemberName}}
+              </ion-text>
+            </ion-col>
+          </ion-item>
+
+          <ion-item line="full" class="itemheight">
+            <ion-col size="5">
+              <ion-text class="head-text">
+                Email
+              </ion-text>
+            </ion-col>
+            <ion-col size="1">
+              <ion-text>
+                <strong>:</strong>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text class="val-text">
+                {{item.Email}}
+              </ion-text>
+            </ion-col>
+          </ion-item>
+
+          <ion-item line="full" class="itemheight">
+            <ion-col size="5">
+              <ion-text class="head-text">
+                Mobile
+              </ion-text>
+            </ion-col>
+            <ion-col size="1">
+              <ion-text>
+                <strong>:</strong>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text class="val-text">
+                {{item.Phone}}
+              </ion-text>
+            </ion-col>
+          </ion-item>
+
+
+          <ion-item line="full" class="itemheight">
+            <ion-col size="5">
+              <ion-text class="head-text">
+                Adhar No
+              </ion-text>
+            </ion-col>
+            <ion-col size="1">
+              <ion-text>
+                <strong>:</strong>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text class="val-text">
+                {{item.AdharNumber}}
+              </ion-text>
+            </ion-col>
+          </ion-item>
+
+          <ion-item line="full" class="itemheight">
+            <ion-col size="5">
+              <ion-text class="head-text">
+                Role
+              </ion-text>
+            </ion-col>
+            <ion-col size="1">
+              <ion-text>
+                <strong>:</strong>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text class="val-text">
+                {{item.Role}}
+              </ion-text>
+            </ion-col>
+          </ion-item>
+
+          <ion-item line="full" class="itemheight">
+            <ion-col size="5">
+              <ion-text class="head-text">
+                Credit
+              </ion-text>
+            </ion-col>
+            <ion-col size="1">
+              <ion-text>
+                <strong>:</strong>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text class="val-text">
+                {{item.credit}}
+              </ion-text>
+            </ion-col>
+          </ion-item>
+
+          <ion-item line="full" class="itemheight">
+            <ion-col size="5">
+              <ion-text class="head-text">
+                Debit
+              </ion-text>
+            </ion-col>
+            <ion-col size="1">
+              <ion-text>
+                <strong>:</strong>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text class="val-text">
+                {{item.debit}}
+              </ion-text>
+            </ion-col>
+          </ion-item>
+
+
+          <ion-item line="full" class="itemheight">
+            <ion-col size="5">
+              <ion-text class="head-text">
+                Action
+              </ion-text>
+            </ion-col>
+            <ion-col size="1">
+              <ion-text>
+                <strong>:</strong>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-icon style="font-size: 24px;" name="wallet-outline" (click)="walletmanage(item)">
+              </ion-icon>
+            </ion-col>
+          </ion-item>
+
+        </ion-card>
+
+        <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreData($event)">
+          <ion-infinite-scroll-content loadingSpinner="crescent">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+
+      </ion-grid>
+
+      <div class="no-order-found-div" *ngIf="screenDataArray?.length == 0">
+        <ion-text>
+          No Record Found !!
+        </ion-text>
+      </div>
+
+    </div>
+
+    <div *ngSwitchCase="'wallet-request'">
+      <ion-grid *ngIf="screenDataArray!==null">
+        <ion-card *ngFor="let item of screenDataArray | slice:0:loadfirstItem;  let i = index;">
+
+          <ion-row class="row-head">
+            <ion-col>
+              <ion-text class="heading-text">
+                UniqueId
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="value-text">
+                {{item.UniqueId}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+
+          <ion-item line="full" class="itemheight">
+            <ion-col size="5">
+              <ion-text class="head-text">
+                Member Name
+              </ion-text>
+            </ion-col>
+            <ion-col size="1">
+              <ion-text>
+                <strong>:</strong>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text class="val-text">
+                {{item.MemberName}}
+              </ion-text>
+            </ion-col>
+          </ion-item>
+
+          <ion-item line="full" class="itemheight">
+            <ion-col size="5">
+              <ion-text class="head-text">
+                Email
+              </ion-text>
+            </ion-col>
+            <ion-col size="1">
+              <ion-text>
+                <strong>:</strong>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text class="val-text">
+                {{item.Email}}
+              </ion-text>
+            </ion-col>
+          </ion-item>
+
+          <ion-item line="full" class="itemheight">
+            <ion-col size="5">
+              <ion-text class="head-text">
+                Mobile
+              </ion-text>
+            </ion-col>
+            <ion-col size="1">
+              <ion-text>
+                <strong>:</strong>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text class="val-text">
+                {{item.Phone}}
+              </ion-text>
+            </ion-col>
+          </ion-item>
+
+
+          <ion-item line="full" class="itemheight">
+            <ion-col size="5">
+              <ion-text class="head-text">
+                Adhar No
+              </ion-text>
+            </ion-col>
+            <ion-col size="1">
+              <ion-text>
+                <strong>:</strong>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text class="val-text">
+                {{item.AdharNumber}}
+              </ion-text>
+            </ion-col>
+          </ion-item>
+
+          <ion-item line="full" class="itemheight">
+            <ion-col size="5">
+              <ion-text class="head-text">
+                Role
+              </ion-text>
+            </ion-col>
+            <ion-col size="1">
+              <ion-text>
+                <strong>:</strong>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text class="val-text">
+                {{item.Role}}
+              </ion-text>
+            </ion-col>
+          </ion-item>
+
+          <ion-item line="full" class="itemheight">
+            <ion-col size="5">
+              <ion-text class="head-text">
+                Credit
+              </ion-text>
+            </ion-col>
+            <ion-col size="1">
+              <ion-text>
+                <strong>:</strong>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text class="val-text">
+                {{item.credit}}
+              </ion-text>
+            </ion-col>
+          </ion-item>
+
+          <ion-item line="full" class="itemheight">
+            <ion-col size="5">
+              <ion-text class="head-text">
+                Txn Details
+              </ion-text>
+            </ion-col>
+            <ion-col size="1">
+              <ion-text>
+                <strong>:</strong>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text class="val-text">
+                {{item.txn_detail}}
+              </ion-text>
+            </ion-col>
+          </ion-item>
+
+          <ion-item line="full" class="itemheight">
+            <ion-col size="5">
+              <ion-text class="head-text">
+                Description
+              </ion-text>
+            </ion-col>
+            <ion-col size="1">
+              <ion-text>
+                <strong>:</strong>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text class="val-text">
+                {{item.description}}
+              </ion-text>
+            </ion-col>
+          </ion-item>
+
+        </ion-card>
+
+        <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreData($event)">
+          <ion-infinite-scroll-content loadingSpinner="crescent">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+
+      </ion-grid>
+
+      <div class="no-order-found-div" *ngIf="screenDataArray?.length == 0">
+        <ion-text>
+          No Record Found !!
+        </ion-text>
+      </div>
+
+    </div>
+
+    <div *ngSwitchCase="'bank-details'">
+      <ion-grid *ngIf="screenDataArray!==null">
+        <ion-card *ngFor="let item of screenDataArray | slice:0:loadfirstItem;  let i = index;">
+
+          <ion-row class="row-head">
+            <ion-col>
+              <ion-text class="heading-text">
+                Bank Name
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="value-text">
+                {{item.bank_name}}
+              </ion-text>
+            </ion-col>
+          </ion-row>
+
+          <ion-item line="full" class="itemheight">
+            <ion-col size="5">
+              <ion-text class="head-text">
+                Account Holder's name
+              </ion-text>
+            </ion-col>
+            <ion-col size="1">
+              <ion-text>
+                <strong>:</strong>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text class="val-text">
+                {{item.bank_company_name}}
+              </ion-text>
+            </ion-col>
+          </ion-item>
+
+          <ion-item line="full" class="itemheight">
+            <ion-col size="5">
+              <ion-text class="head-text">
+                Bank Branch
+              </ion-text>
+            </ion-col>
+            <ion-col size="1">
+              <ion-text>
+                <strong>:</strong>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text class="val-text">
+                {{item.bank_branch}}
+              </ion-text>
+            </ion-col>
+          </ion-item>
+
+          <ion-item line="full" class="itemheight">
+            <ion-col size="5">
+              <ion-text class="head-text">
+                IFSC Code
+              </ion-text>
+            </ion-col>
+            <ion-col size="1">
+              <ion-text>
+                <strong>:</strong>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text class="val-text">
+                {{item.bank_ifsc}}
+              </ion-text>
+            </ion-col>
+          </ion-item>
+
+
+          <ion-item line="full" class="itemheight">
+            <ion-col size="5">
+              <ion-text class="head-text">
+                Account Number
+              </ion-text>
+            </ion-col>
+            <ion-col size="1">
+              <ion-text>
+                <strong>:</strong>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text class="val-text">
+                {{item.bank_account_no}}
+              </ion-text>
+            </ion-col>
+          </ion-item>
+
+          <ion-item line="full" class="itemheight" *ngIf="item.qr_code!==''">
+            <ion-col size="5">
+              <ion-text class="head-text">
+                QR Code
+              </ion-text>
+            </ion-col>
+            <ion-col size="1">
+              <ion-text>
+                <strong>:</strong>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <img style="height: 15vh;" src="{{imageBaseUrl+item.qr_code}}" alt="QRImage">
+            </ion-col>
+          </ion-item>
+
+        </ion-card>
+
+        <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreData($event)">
+          <ion-infinite-scroll-content loadingSpinner="crescent">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </ion-grid>
+
+      <div class="no-order-found-div" *ngIf="screenDataArray?.length == 0">
+        <ion-text>
+          No Record Found !!
+        </ion-text>
+      </div>
+
+
+    </div>
+
+  </div>
+
+</ion-content>

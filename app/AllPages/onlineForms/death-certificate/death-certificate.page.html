@@ -1,0 +1,467 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{getFormName.form_name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+
+  <ion-grid>
+    <ion-card [formGroup]="deathForm" novalidate>
+
+      <ion-radio-group formControlName="area">
+        <ion-row class="radio-row" size="12">
+          <ion-col class="radio-col">
+            <ion-label class="radio-label">ग्रामीण</ion-label>
+            <ion-radio mode="md" item-right value="ग्रामीण"></ion-radio>
+          </ion-col>
+          <ion-col class="radio-col">
+            <ion-label class="radio-label">नगरीय</ion-label>
+            <ion-radio mode="md" item-right value="नगरीय"></ion-radio>
+          </ion-col>
+        </ion-row>
+      </ion-radio-group>
+      <p class="error" *ngIf="isSubmited && errorControl.area.errors?.required">
+        <ion-text>
+          * Area is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">मृतक का पूरा नाम</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="मृतक का पूरा नाम" formControlName="fullName">
+        </ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.fullName.errors?.required">
+        <ion-text>
+          * Full Name is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">मृत्यु की दिनाँक</ion-label>
+      <ion-row class="item-row">
+        <ion-datetime class="date-text" placeholder="मृत्यु की दिनाँक" displayFormat="DD-MMM-YYYY"
+          pickerFormat="DD-MMM-YYYY" min="1960" max="2030" formControlName="deathDate"></ion-datetime>
+        <ion-icon class="date-icon" name="calendar-number-outline"></ion-icon>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.deathDate.errors?.required">
+        <ion-text>
+          * Death Date is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">लिंग/Gender</ion-label>
+      <ion-row class="item-row">
+        <ion-select class="select-class" [interfaceOptions]="genderTypeHeader" placeholder="-- चुनें --"
+          formControlName="gender">
+          <ion-select-option value="पुरुष">पुरुष</ion-select-option>
+          <ion-select-option value="महिला">महिला</ion-select-option>
+        </ion-select>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.gender.errors?.required">
+        <ion-text>
+          * Gender is required. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-label class="label-head">धर्म/Religion</ion-label>
+      <ion-row class="item-row">
+        <ion-select class="select-class" [interfaceOptions]="genderTypeHeader" placeholder="-- चुनें --"
+          formControlName="religion">
+          <ion-select-option value="हिन्दू">हिन्दू</ion-select-option>
+          <ion-select-option value="मुस्लिम">मुस्लिम</ion-select-option>
+          <ion-select-option value="सिख">सिख</ion-select-option>
+          <ion-select-option value="ईसाई">ईसाई</ion-select-option>
+          <ion-select-option value="बौद्ध">बौद्ध</ion-select-option>
+          <ion-select-option value="जैन">जैन</ion-select-option>
+          <ion-select-option value="अन्य">अन्य</ion-select-option>
+        </ion-select>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.religion.errors?.required">
+        <ion-text>
+          * Religion is required. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-label class="label-head">पिता/पति /संरक्षक का नाम </ion-label>
+      <ion-radio-group formControlName="fatherHusbandName">
+        <ion-row>
+          <ion-col class="radio-col">
+            <ion-label class="radio-label">पिता</ion-label>
+            <ion-radio mode="md" item-left value="पिता"></ion-radio>
+          </ion-col>
+          <ion-col class="radio-col">
+            <ion-label class="radio-label">पति</ion-label>
+            <ion-radio mode="md" item-left value="पति"></ion-radio>
+          </ion-col>
+          <ion-col class="radio-col">
+            <ion-label class="radio-label">संरक्षक</ion-label>
+            <ion-radio mode="md" item-left value="संरक्षक"></ion-radio>
+          </ion-col>
+        </ion-row>
+      </ion-radio-group>
+      <p class="error" *ngIf="isSubmited && errorControl.fatherHusbandName.errors?.required">
+        <ion-text>
+          * This is required. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="पिता/पति /संरक्षक का नाम" formControlName="fatherName">
+        </ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.fatherName.errors?.required">
+        <ion-text>
+          * This is required. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-label class="label-head">माता का नाम</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="माता का नाम" formControlName="motherName"></ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.motherName.errors?.required">
+        <ion-text>
+          * Mother Name is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">पत्नी का नाम</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="पत्नी का नाम" formControlName="wifeName"></ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.wifeName.errors?.required">
+        <ion-text>
+          * Wife Name is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">राष्ट्रीयता</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="राष्ट्रीयता" formControlName="nationality"></ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.nationality.errors?.required">
+        <ion-text>
+          * Nationality is required. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-label class="label-head">मृत्यु स्थान</ion-label>
+      <ion-row class="item-row">
+        <ion-select class="select-class" [interfaceOptions]="genderTypeHeader" placeholder="-- चुनें --"
+          formControlName="deathPlace">
+          <ion-select-option value="घर">घर</ion-select-option>
+          <ion-select-option value="सरकारी अस्पताल">सरकारी अस्पताल</ion-select-option>
+          <ion-select-option value="निजी अस्पताल">निजी अस्पताल</ion-select-option>
+          <ion-select-option value="अन्य">अन्य</ion-select-option>
+        </ion-select>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.deathPlace.errors?.required">
+        <ion-text>
+          * Death Place is required. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-label class="label-head">मृत्यु का कारण</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="मृत्यु का कारण" formControlName="deathReasion">
+        </ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.deathReasion.errors?.required">
+        <ion-text>
+          * Death Reasion is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">मृतक की आयु (वर्षो में)</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="मृतक की आयु (वर्षो में)" formControlName="deceasedAge">
+        </ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.deceasedAge.errors?.required">
+        <ion-text>
+          * Deceased Age is required. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-label class="label-head">जनपद</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="जनपद" formControlName="janpad"></ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.janpad.errors?.required">
+        <ion-text>
+          * Janpad is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">ब्लाक</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="ब्लाक" formControlName="block"></ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.block.errors?.required">
+        <ion-text>
+          * Block is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">तहसील</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="तहसील" formControlName="tahsil"></ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.tahsil.errors?.required">
+        <ion-text>
+          * Tahsil is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">ग्राम पंचायत</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="ग्राम पंचायत" formControlName="villagePanchayat">
+        </ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.villagePanchayat.errors?.required">
+        <ion-text>
+          * Village Panchayat is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">मृतक का पता</ion-label>
+      <ion-row class="item-row-address">
+        <ion-textarea class="text-area" rows="5" type="text" placeholder="मृतक का पता"
+          formControlName="deceasedAddress">
+        </ion-textarea>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.deceasedAddress.errors?.required">
+        <ion-text>
+          * Deceased Address is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">आवेदक का नाम</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="आवेदक का नाम" formControlName="applicantName">
+        </ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.applicantName.errors?.required">
+        <ion-text>
+          * Applicant Name is required. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-label class="label-head">मोबाईल नम्बर</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="tel" maxlength="10" placeholder="मोबाईल नम्बर" formControlName="mobileNo">
+        </ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.mobileNo.errors?.required">
+        <ion-text>
+          * Valid Mobile No is required. <br />
+        </ion-text>
+      </p>
+      <p class="error" *ngIf="isSubmited && errorControl.mobileNo.errors?.pattern">
+        <ion-text>
+          * Only numerical values allowed. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">आवेदक का पता</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="आवेदक का पता" formControlName="applicantAddress">
+        </ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.applicantAddress.errors?.required">
+        <ion-text>
+          * Applicant Address is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">क्या मृ्त्यु चिकित्सीय रूप से प्रमाणित की गयी है</ion-label>
+      <ion-row class="item-row">
+        <ion-select class="select-class" [interfaceOptions]="genderTypeHeader" placeholder="-- चुनें --"
+          formControlName="deathMedicalStatus">
+          <ion-select-option value="हां">हां</ion-select-option>
+          <ion-select-option value="नहीं">नहीं</ion-select-option>
+        </ion-select>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.deathMedicalStatus.errors?.required">
+        <ion-text>
+          * This is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">किसी प्रकार की चिकित्सा संबन्धी देख रेख यदि की गई हो</ion-label>
+      <ion-row class="item-row">
+        <ion-select class="select-class" [interfaceOptions]="genderTypeHeader" placeholder="-- चुनें --"
+          formControlName="medicalTreatmentStatus">
+          <ion-select-option value="हां">हां</ion-select-option>
+          <ion-select-option value="नहीं">नहीं</ion-select-option>
+        </ion-select>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.medicalTreatmentStatus.errors?.required">
+        <ion-text>
+          * This is required. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-label class="label-head">पंजीकरण तिथि</ion-label>
+      <ion-row class="item-row">
+        <ion-datetime class="date-text" placeholder="पंजीकरण तिथि" displayFormat="DD-MMM-YYYY"
+          pickerFormat="DD-MMM-YYYY" min="1960" max="2030" formControlName="registrationDate"></ion-datetime>
+        <ion-icon class="date-icon" name="calendar-number-outline"></ion-icon>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.registrationDate.errors?.required">
+        <ion-text>
+          * Registration Date is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">पंजीकरण स्थान</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="पंजीकरण स्थान" formControlName="registrationPlace">
+        </ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.registrationPlace.errors?.required">
+        <ion-text>
+          * Registration Place is required. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-label class="label-head">पंजीकरण संख्या /कार्ड संख्या</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="पंजीकरण संख्या /कार्ड संख्या"
+          formControlName="registrationNo"></ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.registrationNo.errors?.required">
+        <ion-text>
+          * Registration / Card No is required. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-label class="label-head">आधार संख्या</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="tel" maxlength="12" placeholder="आधार संख्या" formControlName="adharNo"></ion-input>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && errorControl.adharNo.errors?.required">
+        <ion-text>
+          * Adhar No is required. <br />
+        </ion-text>
+      </p>
+      <p class="error" *ngIf="isSubmited && errorControl.adharNo.errors?.pattern">
+        <ion-text>
+          * Only Numerical values allowed. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-label class="label-head">Photo</ion-label>
+      <ion-row class="item-row">
+        <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('profile')">Choose File
+        </ion-button>
+      </ion-row>
+
+      <ion-row class="itemheight1" *ngIf="profilePhoto!==null">
+        <div class="inner">
+          <img class="selected-img" src="{{profilePhoto}}" name="image5" alt="image">
+          <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('profile')">
+            <ion-icon name="close-outline">
+            </ion-icon>
+          </ion-button>
+        </div>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && profilePhoto==null">
+        <ion-text>
+          * Photo is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">आधार कार्ड</ion-label>
+      <ion-row class="item-row">
+        <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('adhar')">Choose File
+        </ion-button>
+      </ion-row>
+
+      <ion-row class="itemheight1" *ngIf="adharPhoto!==null">
+        <div class="inner">
+          <img class="selected-img" src="{{adharPhoto}}" name="image5" alt="image">
+          <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('adhar')">
+            <ion-icon name="close-outline">
+            </ion-icon>
+          </ion-button>
+        </div>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && adharPhoto==null">
+        <ion-text>
+          * Adhar Photo is required. <br />
+        </ion-text>
+      </p>
+
+      <ion-label class="label-head">Hospital Death Certificate</ion-label>
+      <ion-row class="item-row">
+        <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('hospital')">Choose File
+        </ion-button>
+      </ion-row>
+
+      <ion-row class="itemheight1" *ngIf="hospitalPhoto!==null">
+        <div class="inner">
+          <img class="selected-img" src="{{hospitalPhoto}}" name="image5" alt="image">
+          <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('hospital')">
+            <ion-icon name="close-outline">
+            </ion-icon>
+          </ion-button>
+        </div>
+      </ion-row>
+      <p class="error" *ngIf="isSubmited && hospitalPhoto==null">
+        <ion-text>
+          * Hospital Death Certificate is required. <br />
+        </ion-text>
+      </p>
+
+
+      <ion-label class="label-head">अन्य कोई आवश्यक दस्तावेज़</ion-label>
+      <ion-row class="item-row">
+        <ion-button class="choose-button" shape="round" fill="outline" (click)="selectImage('other')">Choose File
+        </ion-button>
+      </ion-row>
+
+      <ion-row class="itemheight1" *ngIf="otherPhoto!==null">
+        <div class="inner">
+          <img class="selected-img" src="{{otherPhoto}}" name="image5" alt="image">
+          <ion-button class="remove-btn" color="danger" size="small" (click)="removeImage('other')">
+            <ion-icon name="close-outline">
+            </ion-icon>
+          </ion-button>
+        </div>
+      </ion-row>
+
+      <hr>
+      <hr>
+      <ion-row>
+        <ion-col>
+          <ion-button class="submit-button" shape="round" fill="outline" (click)="payAndSubmit()">Pay & Submit
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button class="reset-btn" expand="block" type="submit" (click)="resetMainForm()">Reset
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-card>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,598 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Order Details </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-text class="form-name">
+        {{gotFormType.form_name}}
+      </ion-text>
+    </ion-row>
+
+
+    <ion-card>
+
+      <ion-row class="row-head">
+        <ion-col size="6">
+          <ion-text class="heading-text">
+            Order Id - TTPL00{{formDetails.order_id}}
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="value-text">
+            Date: {{formDetails.created_date | date: "dd/MM/yyyy"}}
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <span class="stamp is-nope"> {{formRubberStatus}}</span>
+      <ion-row class="photo-row1">
+        <img class="selected-img" src="{{imageUrl+formDetails.photo}}" alt="photo">
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="button-col">
+          <ion-button class="download-button" shape="round" fill="outline"
+            (click)="downloadAnything(formDetails.photo,'photo')">Download Photo
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            जिला चुने
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.district}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            आवेदक का निवास
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.nivash}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            आवेदक का पूरा नाम
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.full_name}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            पति
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.father_name}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            माता का नाम
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.mother_name}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            जन्मतिथि
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.dob | date: "dd/MM/yyyy"}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            आधार नंबर
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.adhar_no}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            मोबाइल नंबर
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.mobile_no}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            आवेदक का व्यवसाय
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.business}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            परिवार का विवरण (सदस्यों की संख्या)
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.persons}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            परिवार की कुल वार्ष आय
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.income}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            अकुशल भूमिहीन मजदूर / खेतिहर मजदूर से आय रु.
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.sevayojna_income}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            कुशल मजदूर/ कुशल खेतिहर मजदूर से आय रु.
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.expert_income}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            पेंशन से आय रु.
+            (वेतन पर्ची / प्रमाण पत्र संलग्न करना अनिवार्य है)
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.pension_income}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            निजी व्यवसाय से आय रु.
+            (दुकान का वार्षिक किराया मूल्य, व्यापार कर विभाग में दाखिल विवरणी की कुल धनराशि एवं वार्षिक आयकर विवरणी की
+            रसीद संलग्न करना अनिवार्य है)
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.business_income}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            आवेदक का स्थायी पता(मकान नम्बर,मौहल्ला/पता
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.address}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            तहसील
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.tahsil}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            थाना
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.thana}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            प्रमाण पत्र बनवाने की आवश्य़कता
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.reason}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-item line="full" class="itemheight">
+        <ion-col size="5">
+          <ion-text class="head-text">
+            क्या इससे पूर्व प्रमाण पत्र जारी हुआ है ?
+          </ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-text>
+            <strong>:</strong>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text class="val-text">
+            {{formDetails.previous_issue}}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+
+      <ion-row class="photo-row">
+        <ion-col>
+          <ion-label class="label-head4">स्व० प्रमाणित पत्र</ion-label>
+          <hr>
+          <img class="selected-img" src="{{imageUrl+formDetails.sw_pramanit}}">
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="button-col">
+          <ion-button class="download-button" shape="round" fill="outline"
+            (click)="downloadAnything(formDetails.sw_pramanit,'photo')">Download Pramanit
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="photo-row">
+        <ion-col>
+          <ion-label class="label-head4">आधार कार्ड/वोटर कार्ड/राशन कार्ड/किसान</ion-label>
+          <hr>
+          <img class="selected-img" src="{{imageUrl+formDetails.other_card}}">
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="button-col">
+          <ion-button class="download-button" shape="round" fill="outline"
+            (click)="downloadAnything(formDetails.other_card,'other_card')">Download ID Proof
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row class="photo-row">
+        <ion-col>
+          <ion-label class="label-head4">अन्य कोई आवश्यक दस्तावेज़</ion-label>
+          <hr>
+          <img class="selected-img" src="{{imageUrl+formDetails.other}}">
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="button-col">
+          <ion-button class="download-button" shape="round" fill="outline"
+            (click)="downloadAnything(formDetails.other,'other')">Download Other
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+
+    </ion-card>
+
+
+    <ion-card *ngIf="shareData.userRoleUId=='1' ||shareData.userRoleUId=='7' ||shareData.userRoleUId=='7'">
+
+      <ion-row class="row-head">
+        <ion-col>
+          <ion-text class="heading-text">
+            Status Update of Order Id - TTPL00{{formDetails.order_id}}
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <hr>
+      <ion-label class="label-head">Select Status</ion-label>
+      <ion-row class="item-row">
+        <ion-select class="select-class" placeholder="Select Status" [interfaceOptions]="statusHeader"
+          [(ngModel)]="statusType" *ngIf="formDetails.status=='1'">
+          <ion-select-option value="2">Processing</ion-select-option>
+          <ion-select-option value="3">Canceled</ion-select-option>
+        </ion-select>
+
+        <ion-select class="select-class" placeholder="Select Status" [interfaceOptions]="statusHeader"
+          [(ngModel)]="statusType" *ngIf="formDetails.status==2">
+          <ion-select-option value="2">Processing</ion-select-option>
+          <ion-select-option value="5">Rejected</ion-select-option>
+          <ion-select-option value="4">Completed</ion-select-option>
+        </ion-select>
+      </ion-row>
+
+      <ion-label class="label-head">Remarks</ion-label>
+      <ion-row class="item-row">
+        <ion-input class="input-field" type="text" placeholder="Remarks" [(ngModel)]="remarks">
+        </ion-input>
+      </ion-row>
+
+      <ion-label class="label-head">Upload Document</ion-label>
+      <ion-row class="item-row">
+        <input style="margin-top: 5px;" type="file" #myInput (change)="selectFile($event)">
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button class="submit-button" shape="round" fill="outline" (click)="submitStatus()">Submit</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button class="reset-btn" expand="block" type="submit" (click)="resetStatusUpdate()">Reset
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-card>
+
+    <ion-card>
+      <ion-row class="row-head">
+        <ion-col>
+          <ion-text class="heading-text">
+            Status Update of Order Id - TTPL00{{formDetails.order_id}}
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-card *ngFor="let item of formStatus">
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              Application Status
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{item.status}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              Date of Update
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{item.created_date | date: "dd/MM/yyyy"}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              Remarks
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="val-text">
+              {{item.remarks}}
+            </ion-text>
+          </ion-col>
+        </ion-item>
+
+        <ion-item line="full" class="itemheight">
+          <ion-col size="5">
+            <ion-text class="head-text">
+              Download Document
+            </ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text>
+              <strong>:</strong>
+            </ion-text>
+          </ion-col>
+          <ion-col size="6" *ngIf="item.statusdocument!==''">
+            <ion-button class="download-button" shape="round" fill="outline"
+              (click)="downloadAnything(item.statusdocument,'Document')">Download
+            </ion-button>
+          </ion-col>
+        </ion-item>
+      </ion-card>
+
+    </ion-card>
+
+  </ion-grid>
+</ion-content>
